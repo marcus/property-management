@@ -1,0 +1,45 @@
+<%= javascript_include_tag 'builder' %>
+<%= stylesheet_link_tag 'calendar/red/style.css'%>
+<%= stylesheet_link_tag 'lightbox' %>
+
+<% if !@user.blank? %>You are logged in as <%= @user.login %> <% end %>
+
+<p>
+  <b>Name:</b>  <%=h @property.name %>
+</p>
+
+<p>
+<% if !@property.attachments.blank? %>
+   <p>Attachments</p>
+   <ul>
+  <% for attachment in @property.attachments %>
+    <li>
+      <%= attachment.name %>
+      <% if attachment.attached_content_type.include?("image")%>
+         <%= lightbox_image_tag(attachment.attached.url(:small), attachment.attached.url(:large), "album name",
+                                                        {:class=>"images"}, :title => "This is a test!") %>
+      <% end %>
+   </li>
+  <% end %>
+  </ul>
+<% else %>
+  
+<% end %>
+
+</p>
+
+<div id="calendar_block">
+   <table width=100%><tr>
+      <% (0..4).each do |x| %>
+         <td valign="top"><span class="calendar_table"><%= calendar_with_events(x)%></span></td>
+      <% end %>
+   </tr></table>
+</div>
+
+<div id="day_detail"></div>
+<ul><% @events.each do |e| %>
+   <li><%= e.name %>, <%= e.starts_at %>, <%= e.ends_at %></li>
+<% end %></ul>
+   
+<%= link_to 'Edit', edit_property_path(@property) %> |
+<%= link_to 'Back', properties_path %>

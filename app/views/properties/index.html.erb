@@ -1,0 +1,18 @@
+<div id="featured-content">
+   <% names = [] %>
+   <% if !@properties.blank? %>
+     <% for property in @properties %>
+          <% if !property.featured_image.blank? %>
+             <%= link_to (image_tag property.featured_image.attached.url(:medium), :class => "front-page-property"), property %>
+             <% names << property.name %>
+         <% end %>
+     <% end %>
+   <% else %>
+     You haven't added any properties yet!
+   <% end %>
+</div>
+<div id="featured-names">
+     <% for name in names %>
+       <%= name %>
+     <% end %>
+</div>

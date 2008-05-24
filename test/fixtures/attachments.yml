@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  attached_file_name: MyString
+  attached_content_type: MyString
+  attached_file_size: MyString
+  name: MyString
+  description: MyText
+  property_id: 1
+
+two:
+  attached_file_name: MyString
+  attached_content_type: MyString
+  attached_file_size: MyString
+  name: MyString
+  description: MyText
+  property_id: 1

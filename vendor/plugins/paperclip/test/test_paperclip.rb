@@ -64,12 +64,17 @@ class PaperclipTest < Test::Unit::TestCase
       assert Dummy.new.respond_to?(:avatar=)
     end
 
-    [[:presence,   nil,               "5k.png", nil],
-     [:size,       {:in => 1..10240}, "5k.png", "12k.png"]].each do |args|
+    [[:presence,      nil,                             "5k.png",   nil],
+     [:size,          {:in => 1..10240},               "5k.png",   "12k.png"],
+     [:size2,         {:in => 1..10240},               nil,        "12k.png"],
+     [:content_type1, {:content_type => "image/png"},  "5k.png",   "text.txt"],
+     [:content_type2, {:content_type => "text/plain"}, "text.txt", "5k.png"],
+     [:content_type3, {:content_type => %r{image/.*}}, "5k.png",   "text.txt"],
+     [:content_type4, {:content_type => "image/png"},  nil,        "text.txt"]].each do |args|
       context "with #{args[0]} validations" do
         setup do
           Dummy.class_eval do
-            send(*[:"validates_attachment_#{args[0]}", :avatar, args[1]].compact)
+            send(*[:"validates_attachment_#{args[0].to_s[/[a-z_]*/]}", :avatar, args[1]].compact)
           end
           @dummy = Dummy.new
         end
@@ -97,6 +102,21 @@ class PaperclipTest < Test::Unit::TestCase
             assert_equal 1, @dummy.avatar.errors.length
           end
         end
+        
+#        context "and an invalid file with :message" do
+#          setup do
+#            @file = args[3] && File.new(File.join(FIXTURES_DIR, args[3]))
+#          end
+#
+#          should "have errors" do
+#            if args[1] && args[1][:message] && args[4]
+#              @dummy.avatar = @file
+#              assert ! @dummy.avatar.valid?
+#              assert_equal 1, @dummy.avatar.errors.length
+#              assert_equal args[4], @dummy.avatar.errors[0]
+#            end
+#          end
+#        end
       end
     end
   end

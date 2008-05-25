@@ -1,5 +1,10 @@
 require 'access_control'
 
+# This will need to change when the app is multiple user
+def current_company
+  Company.find(:first)
+end
+
 # index show new edit create udpate destroy
 AccessControl.map do |map|
   # So.... the only thing left is to separate these into contexts for purpose of the GUI
@@ -8,7 +13,7 @@ AccessControl.map do |map|
   map.permission :add_properties,     { :properties  => [ :new, :create         ] }
   map.permission :delete_properties,  { :properties  => [ :destroy              ] }
   map.permission :deactivate_property,{ :properties  => [ :deactivate           ] }
-  map.permission :edit_business,      { :business    => [ :show, :edit, :update ] ,
+  map.permission :edit_company,       { :company     => [ :show, :edit, :update ] ,
                                         :account     => [ :edit                 ] }
   
   # Property scope

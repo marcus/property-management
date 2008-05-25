@@ -3,7 +3,7 @@
    <% if !@properties.blank? %>
      <% for property in @properties %>
           <% if !property.featured_image.blank? %>
-            <%= link_to (image_tag property.featured_image.attached.url(:medium), :class => "front-page-property"), property %>
+             <%= link_to (image_tag property.featured_image.attached.url(:medium), :class => "front-page-property"), property %>
              <% names << property.name %>
          <% end %>
      <% end %>
@@ -11,14 +11,8 @@
      You haven't added any properties yet!
    <% end %>
 </div>
-
-
-
-
 <div id="featured-names">
      <% for name in names %>
-       <div class="front-name"><%= name %></div>
+       <%= name %>
      <% end %>
 </div>
-
-<div id="company-description"><%= current_company.description %></div>

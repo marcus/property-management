@@ -13,10 +13,13 @@
 		<%= f.label :description %><br />
     <%= f.text_area :description %>
   </p>
-  <p>
-		<%= f.label :property_id %><br />
-    <%= f.select :property_id, @properties.map{|p| [p.name, p.id]} %>
-  </p>
+  
+  <% if !@properties.blank? %>
+     <p>
+   		<%= f.label :property_id %><br />
+       <%= f.select :property_id, @properties.map{|p| [p.name, p.id]} %>
+     </p>
+  <% end %>
   <p>
 		<%= f.label :featured %><br />
     Yes: <%= radio_button_tag :featured, true %><br />

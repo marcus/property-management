@@ -1,0 +1,15 @@
+<%= image_tag current_company.logo.url %>
+
+
+<p>
+  <b>Name:</b>
+  <%=h @company.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @company.description %>
+</p>
+
+
+<%= link_to 'Edit', :action => 'edit' %>

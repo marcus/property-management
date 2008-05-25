@@ -15,7 +15,7 @@
       <%= attachment.name %>
       <% if attachment.attached_content_type.include?("image")%>
          <%= lightbox_image_tag(attachment.attached.url(:small), attachment.attached.url(:large), "album name",
-                                                        {:class=>"images"}, :title => attachment.description) %>
+                                                        {:class=>"images"}, :title => "This is a test!") %>
       <% end %>
    </li>
   <% end %>

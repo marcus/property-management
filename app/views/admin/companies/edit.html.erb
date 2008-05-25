@@ -1,0 +1,23 @@
+<% form_for @company, :url => { :action => "create" }, :method => 'put', :html => { :multipart => true } do |f| %>
+   <%= f.error_messages %>
+   
+   <p>
+      Upload a new logo:
+      <%= f.file_field :logo %>
+   </p>
+   
+   <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+   </p>
+   
+   <p>
+      <%= f.label :description %><br />
+      <%= f.text_area :description %>
+   </p>
+   
+   <p>
+      <%= f.submit "Save Changes" %>
+   </p>
+   
+<% end %>

@@ -5,16 +5,26 @@
 
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Northwest Properties: <%= controller.action_name %></title>
+  <title><%= current_company.name %> <%= controller.action_name %></title>
   <%= javascript_include_tag :all, :cache => true %>
   <%= stylesheet_link_tag :all, :cache => true %>
 </head>
 <body>
 <div id="wrapper">
    <div id="header">
-      <div id="logo">Awesome Logo!<br />La la</div>
+      <div id="logo">
+         <% if !current_company.logo.blank? %>
+            <%= link_to (image_tag current_company.logo.url), "/" %>
+         <% end %>
+      </div>
       <div id="top-links">about | contact us</div>
-      <div id="login-box">Visitor Login</div>
+      <div id="login-box">
+         <% if current_user.blank? %>
+            <%= link_to 'User Login', '/login' %>
+         <% else %>
+            <%= link_to 'Logout', '/logout' %>
+         <% end %>
+      </div>
       <p style="color: green"><%= flash[:notice] %></p>
    </div>
 

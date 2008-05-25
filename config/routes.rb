@@ -4,11 +4,17 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session
   map.resources :attachments
   map.resources :properties, :has_many => [:events, :attachments]
+  map.resources :company
   map.root :controller => "properties"
   
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  
+  map.namespace :admin do |admin|
+    admin.resource :company
+    admin.resources :properties, :has_many => [:events, :attachments]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
 

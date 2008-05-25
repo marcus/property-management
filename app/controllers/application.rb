@@ -25,4 +25,9 @@ class ApplicationController < ActionController::Base
       return true
     end
   end
+  
+  
+  def get_current_company
+    @company = current_company
+  end
 end

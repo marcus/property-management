@@ -2,20 +2,24 @@
 <%= stylesheet_link_tag 'calendar/red/style.css'%>
 <%= stylesheet_link_tag 'lightbox' %>
 
-<p>
-  <b>Name:</b>  <%=h @property.name %>
-</p>
+<div id="property_header">
+   <h2><%=h @property.name %></h2>
+</div>
 
-<p>
+<div id="property_description">
+   <p><%= h @property.description %></p>
+</div>
+
+<div id="property_images">
 <% if !@property.attachments.blank? %>
-   <p>Attachments</p>
-   <ul>
+   <ul class="property_image">
   <% for attachment in @property.attachments %>
     <li>
-      <%= attachment.name %>
       <% if attachment.attached_content_type.include?("image")%>
          <%= lightbox_image_tag(attachment.attached.url(:small), attachment.attached.url(:large), "album name",
                                                         {:class=>"images"}, :title => attachment.description) %>
+         <br />
+         <p class="property_image_name"><%= attachment.name %></p>
       <% end %>
    </li>
   <% end %>
@@ -24,7 +28,7 @@
   
 <% end %>
 
-</p>
+</div>
 
 <div id="calendar_block">
    <table width=100%><tr>
@@ -34,10 +38,11 @@
    </tr></table>
 </div>
 
-<div id="day_detail"></div>
-<ul><% @events.each do |e| %>
-   <li><%= e.name %>, <%= e.starts_at %>, <%= e.ends_at %></li>
-<% end %></ul>
-   
-<%= link_to 'Edit', edit_property_path(@property) %> |
-<%= link_to 'Back', properties_path %>
+<% if !current_user.blank? %>
+   <% if @user.allowed_to? :view_event_details, @property %>
+      <div id="day_detail"></div>
+      <ul><% @events.each do |e| %>
+         <li><%= e.name %>: <%= e.starts_at.strftime("%D") %> - <%= e.ends_at.strftime("%D") %></li>
+      <% end %></ul>
+   <% end %>
+<% end %>

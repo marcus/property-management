@@ -20,8 +20,7 @@ module AccessControl
   
   class Mapper
     def permission(name, hash)
-      @permissions ||= []
-      @permissions << Permission.new(name, hash)
+      (@permissions ||= []) << Permission.new(name, hash)
     end
     
     def mapped_permissions

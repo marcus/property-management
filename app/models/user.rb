@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     if membership
       membership.role
     else
-      return "No role in #{context.name}"
+      false
     end
   end
   
@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     if context
       return true if admin?
       
-      # No action allowed on inactive properties
+      # No action allowed on inactive contexts
       return false unless context.active?
       
       role = role_for_context(context)

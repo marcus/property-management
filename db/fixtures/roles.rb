@@ -3,6 +3,7 @@
 # Admin should still be scoped within a specific company (though in this case there is only one company)
 # So.... for now hmm. Property owners cannot add properties, only Admins
 
+# Roles for properties
 Role.seed(:name) do |s|
   s.name = "property_owner"
   s.permissions = [:add_properties,
@@ -18,6 +19,7 @@ Role.seed(:name) do |s|
                    :remove_events,
                    :view_event_details]
                    #Manage testmonials
+  s.context = "Property"
 end
 
 Role.seed(:name) do |s|
@@ -31,10 +33,20 @@ Role.seed(:name) do |s|
                    :edit_events,
                    :remove_events,
                    :view_event_details]
+  s.context = "Property"
 end
 
 Role.seed(:name) do |s|
   s.name = "property_visitor"
   s.permissions = [:view_attachments]
-  # Leave testimonial
+                  # Leave testimonial
+                  # View maps
+  s.context = "Property"
+end
+
+# Roles for business
+Role.seed(:name) do |s|
+  s.name = "company_principal"
+  s.permissions = [ :view_admin ]
+  s.context = "Company"
 end

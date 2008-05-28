@@ -7,9 +7,7 @@ end
 
 # index show new edit create udpate destroy
 AccessControl.map do |map|
-  # So.... the only thing left is to separate these into contexts for purpose of the GUI
-  
-  # Business scope
+  # Company scope
   map.permission :add_properties,     { :properties  => [ :new, :create         ] }
   map.permission :delete_properties,  { :properties  => [ :destroy              ] }
   map.permission :deactivate_property,{ :properties  => [ :deactivate           ] }

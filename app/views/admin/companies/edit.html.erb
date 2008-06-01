@@ -1,5 +1,12 @@
+<%= tabnav :admin %>
+
 <% form_for @company, :url => { :action => "create" }, :method => 'put', :html => { :multipart => true } do |f| %>
    <%= f.error_messages %>
+   
+   <p>
+      Current Logo:
+      <%= image_tag current_company.logo.url %>
+   </p>
    
    <p>
       Upload a new logo:

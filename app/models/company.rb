@@ -1,4 +1,6 @@
 class Company < ActiveRecord::Base
+  has_many :properties
+  
   has_attached_file :logo, 
                     :styles => { :medium => "220x80>", :small => "110x40>" },
                     :default_style => :medium,

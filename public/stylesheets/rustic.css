@@ -1,19 +1,23 @@
 /* @override 
 	http://localhost:3000/stylesheets/rustic.css?1209271689
 	http://localhost:3000/stylesheets/rustic.css?1211673188
+	http://localhost:3000/stylesheets/rustic.css?1212035059
+	http://property.dev/stylesheets/rustic.css?1212180458
+	http://property.dev/stylesheets/rustic.css?1212278672
 */
 
 body {
   position: relative;
   top: -13px;
-  background-color: #2d2920; color: #333;
+  background-color: #2d2920;
+  color: #333;
   margin: 0px;
   padding: 0px;
 }
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
+  font-size: 13px;
   line-height: 18px;
 }
 
@@ -23,11 +27,11 @@ pre {
   font-size: 11px;
 }
 
-a { 
+a {
   color: #000;
 }
 
-a:visited, a:active, a:hover { 
+a:visited, a:active, a:hover {
   color: #666;
 }
 
@@ -40,9 +44,13 @@ h1 {
   padding-top: 10px;
   font: bold 16px "Lucida Grande", Lucida, Verdana, sans-serif;
 }
+
 h2 {
   font-family: Georgia, "Times New Roman", Times, serif;
   color: #2d2920;
+}
+h3 {
+  
 }
 .fieldWithErrors {
   padding: 2px;
@@ -51,6 +59,7 @@ h2 {
 }
 
 /** ALERTS **/
+
 #errorExplanation {
   width: 400px;
   border: 2px solid red;
@@ -80,11 +89,17 @@ h2 {
   font-size: 12px;
   list-style: square;
 }
+
 #wrapper {
   width: 960px;
   padding: 5px;
-  margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */  top: -10px;
+  margin: 0 auto;
+
+
+/* the auto margins (in conjunction with a width) center the page */
+  top: -10px;
 }
+
 /* @group Header */
 
 #header {
@@ -107,7 +122,7 @@ h2 {
   padding-right: 13px;
   margin-bottom: 42px;
   position: relative;
-  clear:right;
+  clear: right;
 }
 
 #login-box {
@@ -124,15 +139,19 @@ h2 {
 /* @group Content */
 
 #content {
+  
 }
+
 #featured-content {
   background: url(/images/midbkgrnd.jpg) 0 0;
   text-align: center;
 }
+
 .front-page-property {
   border: 4px solid #fff;
   margin: 3px;
 }
+
 #body-content {
   background-color: #fff;
 }
@@ -143,11 +162,13 @@ h2 {
   font: normal normal 15px Myriad, "Lucida Grande", Lucida, Verdana, sans-serif;
   text-align: center;
 }
+
 #featured-names {
   background-image: url(../images/auburnbackground.jpg);
   height: 52px;
   text-align: center;
 }
+
 .front-name {
   width: 32%;
   float: left;
@@ -156,40 +177,135 @@ h2 {
   color: #2d2920;
   font-size: 18px;
 }
+
 /* @end */
+
 #property_header {
   padding: 10px;
 }
+
 #property_images {
   float: left;
   width: 475px;
 }
+
 #property_description {
   float: left;
-  width: 476px;  
+  width: 476px;
 }
+
 #property_description p {
   padding-left: 10px;
 }
+
 .property_image {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
+
 .property_image li {
   list-style: none;
   float: left;
 }
+
 .property_image img {
   margin: 6px;
 }
+
 .property_image_name {
   text-align: center;
   margin-top: 1px;
 }
+
 #calendar_block {
   clear: left;
 }
-.calendar_table {
-  padding: 10px;
+
+#calendar_block .calendars {
+  padding: 2px;
+  width: 900px;
+}
+
+/* @group Admin Tabs */
+
+.admin_tabnav {
+  color: #2d2920;
+  border-bottom: 1px solid #6f654f;
+  margin: 13px 0px 0px 0px;
+  padding: 0px;
+  z-index: 1;
+  padding-left: 10px
+}
+
+.admin_tabnav ul {
+  margin: 0px;
+  padding: 10px 0px 0px;
+}
+
+.admin_tabnav li {
+  display: inline;
+  overflow: hidden;
+  list-style-type: none;
+}
+
+.admin_tabnav li span.disabled {
+  color: #888888;
+  background: #FAFAFA;
+  border: 2px solid #DDDDDD;
+  border-bottom: none;
+  padding: 2px 5px 0px 5px;
+  margin: 0;
+  text-decoration: none;
+}
+
+.admin_tabnav a, admin_tabnav a.active {
+  color: ##2d2920;
+  background: #EEEEEE;
+  padding: 2px 5px 0px 5px;
+  margin: 0;
+  text-decoration: none;
+  border-bottom-style: none;
+  border-width: 1px;
+  border-top: 1px solid #b3b3b3;
+  border-right: 1px solid #b3b3b3;
+  border-bottom-color: #b3b3b3;
+  border-left: 1px solid #b3b3b3;
+}
+
+.admin_tabnav a.active {
+  background: #FFFFFF;
+  border-bottom: 3px solid #FFFFFF;
+}
+
+.admin_tabnav a:hover {
+  color: #FFFFFF;
+  background: #CCCCCC;
+}
+
+.admin_tabnav a:visited {
+  color: ##2d2920;
+}
+
+.admin_tabnav a.active:hover {
+  background: #FFFFFF;
+  color: ##2d2920;
+}
+
+.admin_tabnav_content {
+  background: #FFFFFF;
+  padding: 20px;
+  border: 2px solid black;
+  border-top: none;
+  z-index: 2;
+}
+
+/* @end */
+
+.manage-properties-image {
+  float: left;
+  margin: 3px;
+  text-align: center;
+  padding-left: 4px;
+  font: bold 13px "Lucida Grande", Lucida, Verdana, sans-serif;
 }

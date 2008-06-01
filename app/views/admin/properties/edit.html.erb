@@ -4,21 +4,19 @@
   <%= f.error_messages %>
 
   <p>
-		<%= f.label :name %><br />
+	 <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
+  
   <p>
-		<%= f.label :description %><br />
-    <%= f.text_area :description %>
+	 <%= f.label :description %><br />
+    <%= f.text_area :description, :rows => 4 %>
   </p>
   <p>
-		<%= f.label :location %><br />
+	 <%= f.label :location %><br />
     <%= f.text_field :location %>
   </p>
   <p>
-    <%= f.submit "Update" %>
+     <%= f.submit "Update" %>
   </p>
 <% end %>
-
-<%= link_to 'Show', @property %> |
-<%= link_to 'Back', properties_path %>

@@ -30,4 +30,20 @@ class ApplicationController < ActionController::Base
   def get_current_company
     @company = current_company
   end
+  
+  
+  def authorize(control = params[:controller], action = params[:action])
+    if !@property.blank? : con = @property
+    elsif !@context.blank? : con = @context
+    end
+    
+    allowed = false
+    
+    if !con.blank?
+      allowed = current_user.allowed_to?({:controller => control, :action => action}, con)
+      logger.info("parameters #{control} action: #{action} #{allowed}")
+    end
+    
+    allowed ? true : redirect_to('')
+  end
 end

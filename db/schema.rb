@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080526221735) do
+ActiveRecord::Schema.define(:version => 20080601033914) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attached_file_name"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20080526221735) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",      :default => true
+    t.integer  "company_id"
   end
 
   create_table "roles", :force => true do |t|

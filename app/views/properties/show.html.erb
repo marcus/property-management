@@ -31,7 +31,7 @@
 </div>
 
 <div id="calendar_block">
-   <table width=100%><tr>
+   <table class="calendars"><tr>
       <% (0..4).each do |x| %>
          <td valign="top"><span class="calendar_table"><%= calendar_with_events(x)%></span></td>
       <% end %>
@@ -40,7 +40,7 @@
 
 <% if !current_user.blank? %>
    <% if @user.allowed_to? :view_event_details, @property %>
-      <div id="day_detail"></div>
+      <div id="day_detail">&nbsp;</div>
       <ul><% @events.each do |e| %>
          <li><%= e.name %>: <%= e.starts_at.strftime("%D") %> - <%= e.ends_at.strftime("%D") %></li>
       <% end %></ul>

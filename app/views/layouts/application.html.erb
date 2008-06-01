@@ -22,8 +22,8 @@
          <% if current_user.blank? %>
             <%= link_to 'User Login', '/login' %>
          <% else %>
-            <% if current_user.allowed_to? :view_admin, current_company %>
-               <%= link_to 'Admin', '/admin/company' %> | 
+            <% if can?(:view_admin) %>
+               <%= link_to 'Admin', '/admin/properties' %> | 
             <% end %>
             <%= link_to 'Logout', '/logout' %>
          <% end %>

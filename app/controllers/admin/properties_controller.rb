@@ -82,6 +82,6 @@ class Admin::PropertiesController < ApplicationController
   end
   
   def get_context
-    @context = current_company
+    @company = current_company
   end
 end

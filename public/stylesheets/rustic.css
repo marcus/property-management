@@ -4,6 +4,8 @@
 	http://localhost:3000/stylesheets/rustic.css?1212035059
 	http://property.dev/stylesheets/rustic.css?1212180458
 	http://property.dev/stylesheets/rustic.css?1212278672
+	http://property.dev/stylesheets/rustic.css?1212279404
+	http://property.dev/stylesheets/rustic.css?1212873820
 */
 
 body {
@@ -174,8 +176,14 @@ h3 {
   float: left;
   margin: 6px;
   border: 4px;
-  color: #2d2920;
+  color: #dadaca;
+  xcolor: #2d2920;
   font-size: 18px;
+}
+
+.front-name a, .front-name a:visited, .front-name a:active, .front-name a:hover {
+   text-decoration: none;
+   color: #dadaca;
 }
 
 /* @end */

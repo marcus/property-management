@@ -6,4 +6,5 @@ User.seed(:login) do |s|
   s.status = 1
   s.firstname = "Marcus"
   s.lastname = "Vorwaller"
+  s.admin = 1
 end

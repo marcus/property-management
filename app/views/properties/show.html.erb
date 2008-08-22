@@ -1,6 +1,6 @@
 <%= javascript_include_tag 'builder' %>
-<%= stylesheet_link_tag 'calendar/red/style.css'%>
 <%= stylesheet_link_tag 'lightbox' %>
+<%= stylesheet_link_tag 'events' %>
 
 <div id="property_header">
    <h2><%=h @property.name %></h2>
@@ -29,20 +29,20 @@
 <% end %>
 
 </div>
+<div style="clear:both;"></div>
+<div id="events">
+   <% if @events_list.length > 0 %>
+     <% for event in @events_list %>
+       <%= link_to event.name, event_path(event) %><br/>
+       <%= event.starts_at.strftime('%a %B %d, %G') %>
+     <% end %>
 
-<div id="calendar_block">
-   <table class="calendars"><tr>
-      <% (0..4).each do |x| %>
-         <td valign="top"><span class="calendar_table"><%= calendar_with_events(x)%></span></td>
-      <% end %>
-   </tr></table>
+   <% else %>
+     No events have been created yet. &nbsp;<%= link_to 'New Event', new_event_path %>
+   <% end %>
 </div>
 
-<% if !current_user.blank? %>
-   <% if @user.allowed_to? :view_event_details, @property %>
-      <div id="day_detail">&nbsp;</div>
-      <ul><% @events.each do |e| %>
-         <li><%= e.name %>: <%= e.starts_at.strftime("%D") %> - <%= e.ends_at.strftime("%D") %></li>
-      <% end %></ul>
-   <% end %>
-<% end %>
+<div id="calendar_display">
+   <%= render :partial => 'events/calendar' %>
+</div>
+<div style="clear:both;"></div>

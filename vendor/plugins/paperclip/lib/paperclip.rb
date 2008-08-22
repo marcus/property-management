@@ -113,6 +113,12 @@ module Paperclip
     def has_attached_file name, options = {}
       include InstanceMethods
 
+      %w(file_name).each do |field|
+        unless column_names.include?("#{name}_#{field}")
+          raise PaperclipError.new("#{self} model does not have required column '#{name}_#{field}'")
+        end
+      end
+
       write_inheritable_attribute(:attachment_definitions, {}) if attachment_definitions.nil?
       attachment_definitions[name] = {:validations => []}.merge(options)
 
@@ -129,11 +135,11 @@ module Paperclip
       end
 
       define_method "#{name}?" do
-        ! attachment_for(name).original_filename.blank?
+        attachment_for(name).file?
       end
 
       validates_each(name) do |record, attr, value|
-        value.send(:flush_errors)
+        value.send(:flush_errors) unless value.valid?
       end
     end
 
@@ -151,7 +157,8 @@ module Paperclip
         unless options[:less_than].nil?
           options[:in] = (0..options[:less_than])
         end
-        unless attachment.original_filename.blank? || options[:in].include?(instance[:"#{name}_file_size"].to_i)
+        
+        if attachment.file? && !options[:in].include?(instance[:"#{name}_file_size"].to_i)
           min = options[:in].first
           max = options[:in].last
           
@@ -172,7 +179,7 @@ module Paperclip
     # Places ActiveRecord-style validations on the presence of a file.
     def validates_attachment_presence name, options = {}
       attachment_definitions[name][:validations] << lambda do |attachment, instance|
-        if attachment.original_filename.blank?
+        unless attachment.file?
           options[:message] || "must be set."
         end
       end
@@ -180,7 +187,11 @@ module Paperclip
     
     # Places ActiveRecord-style validations on the content type of the file assigned. The
     # possible options are:
-    # * +content_type+: Allowed content types.  Can be a single content type or an array.  Allows all by default.
+    # * +content_type+: Allowed content types.  Can be a single content type or an array.
+    #   Each type can be a String or a Regexp. It should be noted that Internet Explorer uploads
+    #   files with content_types that you may not expect. For example, JPEG images are given
+    #   image/pjpeg and PNGs are image/x-png, so keep that in mind when determining how you match.
+    #   Allows all by default.
     # * +message+: The message to display when the uploaded file has an invalid content type.
     def validates_attachment_content_type name, options = {}
       attachment_definitions[name][:validations] << lambda do |attachment, instance|
@@ -190,7 +201,7 @@ module Paperclip
           unless options[:content_type].blank?
             content_type = instance[:"#{name}_content_type"]
             unless valid_types.any?{|t| t === content_type }
-              options[:message] || ActiveRecord::Errors.default_error_messages[:inclusion]
+              options[:message] || "is not one of the allowed file types."
             end
           end
         end
@@ -217,12 +228,14 @@ module Paperclip
     end
 
     def save_attached_files
+      logger.info("[paperclip] Saving attachments.")
       each_attachment do |name, attachment|
         attachment.send(:save)
       end
     end
 
     def destroy_attached_files
+      logger.info("[paperclip] Deleting attachments.")
       each_attachment do |name, attachment|
         attachment.send(:queue_existing_for_delete)
         attachment.send(:flush_deletes)

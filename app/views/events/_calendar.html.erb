@@ -1,0 +1,24 @@
+<% @events ||= events  %>
+<% month ||= 0 %>
+
+<div id="calendar_block">
+  
+  <%= calendar_with_events(@events, month)%>
+
+   <div style="border-bottom:1px solid #EEE;padding:2px;">
+     <div style="float:left;">
+   	<%= link_to_remote '<<', :url => {:controller => 'properties', :action => 'update_calendar', :new_month => (month-1), :id => @property.id, :authenticity_token => form_authenticity_token} %>
+     </div>
+     <div style="float:right;text-align:right;">
+       <%= link_to_remote '>>', :url => {:controller => 'properties', :action => 'update_calendar', :new_month => (month+1), :id => @property.id, :authenticity_token => form_authenticity_token} %>
+     </div>
+     <div style="clear:both;"></div>
+   </div>
+
+   <div style="margin:15px 0;">
+       <%= image_tag '/images/icons/add-16.gif' %>
+       <%= link_to 'New Event', new_event_path %>
+   </div>
+  
+   
+</div>

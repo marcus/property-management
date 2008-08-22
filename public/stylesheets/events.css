@@ -1,0 +1,74 @@
+#events {
+  float: left;
+  width: 500px;
+}
+#calendar_display {
+  float: left;
+  width: 300px;
+}
+.calendar {
+  margin: auto;
+}
+.calendar td {  border:1px solid #EEE;}
+
+.monthName th {
+  font-weight: normal;
+  text-align: right;
+  padding-top: 1em;
+  padding-bottom: 0.7em;
+	background-color: #A3C159;
+}
+.dayName th {
+  font-size: 0.7em;
+  padding-top: 0.6em;
+  padding-bottom: 0.3em;
+  text-align:center;
+  font-weight:bold;
+}
+.otherMonth, .day, .specialDay {
+  padding: 6px 10px;
+  font-size:75%;
+  color:#AAA;
+}
+.otherMonth {
+  color: #eeeeee;
+}
+.weekendDay {
+
+}
+.day, .specialDay {
+  text-align: center;
+}
+.specialDay {
+  background-color: lightblue;
+  color: #000;
+}
+.specialDay a, .specialDay a:visited, .specialDay a:hover {
+  color: 000;
+  text-decoration: none;
+}
+.specialDay a:hover {
+  background-color: FFF;
+}
+.today {
+  color: #000;
+  font-weight:bold;
+}
+.event_details {
+  margin-top: 32px;
+  margin-left: 16px;
+}
+.event_details td {
+  padding: 3px;
+}
+.event_form_field {
+  text-align: right;
+  color: #6c6c6c;
+  font-style: italic;
+  font-size: 95%;
+}
+.monthName {
+  padding-top: 12px;
+  font-size: 115%;
+  font-weight: bold;
+}

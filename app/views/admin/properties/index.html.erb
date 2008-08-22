@@ -2,18 +2,20 @@
 
 <h1>Select the property you'd like to manage:</h1>
 
-   <% if !@properties.blank? %>
-     <% for property in @properties %>
-          <% if !property.featured_image.blank? %>
-             <div class="manage-properties-image">
-               <%= link_to (image_tag property.featured_image.attached.url(admin_thumbnail_size)), 
-                   "/admin/properties/#{property.id}/edit" %>
-                   <br /><%= property.name %>
-             </div>
-         <% end %>
-     <% end %>
-   <% else %>
-     You haven't added any properties yet!
-   <% end %>
+  <% if !@properties.blank? %>
+    <% @properties.each do |property| %>
+      <% if !property.featured_image.blank? %>
+        <div class="manage-properties-image">
+          <%= link_to (image_tag property.featured_image.attached.url(admin_thumbnail_size)),
+            edit_admin_property_path(property) %>
+          <br /><%= property.name %>
+        </div>
+      <% else %>
+        <%= link_to property.name, edit_admin_property_path(property) %><br />
+      <% end %>
+    <% end %>
+  <% else %>
+    You haven't added any properties yet!
+  <% end %>
 
 <p style="clear:both">haha</p>

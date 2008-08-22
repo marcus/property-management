@@ -1,8 +1,7 @@
 class PropertiesController < ApplicationController
   # index show new edit create udpate destroy
-  before_filter :get_user
-  # GET /properties
-  # GET /properties.xml
+  before_filter :get_user, :find_property
+  
   def index
     @properties = Property.find(:all)
     respond_to do |format|
@@ -11,20 +10,25 @@ class PropertiesController < ApplicationController
     end
   end
 
-  # GET /properties/1
-  # GET /properties/1.xml
   def show
     @property = Property.find(params[:id], :include => ['events', 'attachments'])
-    @events = @property.events
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @property }
+    # Events for list 
+    if !params[:day]
+      @events_list = @property.events.in_range(Event.month_boundaries(DateTime.now))
+    else
+      @date = params[:day].to_datetime
+      @events_list = @property.events.for_date(params[:day])
     end
+    
+    # Events for calendar
+    @events = @property.events.in_range(Event.month_boundaries(DateTime.now))
+    respond_to do |format|
+      format.html # index.html.erb
+    end
+
   end
 
-  # GET /properties/new
-  # GET /properties/new.xml
   def new
     @property = Property.new
 
@@ -34,13 +38,9 @@ class PropertiesController < ApplicationController
     end
   end
 
-  # GET /properties/1/edit
   def edit
-    @property = Property.find(params[:id])
   end
 
-  # POST /properties
-  # POST /properties.xml
   def create
     @property = Property.new(params[:property])
 
@@ -56,8 +56,6 @@ class PropertiesController < ApplicationController
     end
   end
 
-  # PUT /properties/1
-  # PUT /properties/1.xml
   def update
     @property = Property.find(params[:id])
 
@@ -73,10 +71,7 @@ class PropertiesController < ApplicationController
     end
   end
 
-  # DELETE /properties/1
-  # DELETE /properties/1.xml
   def destroy
-    @property = Property.find(params[:id])
     @property.destroy
 
     respond_to do |format|
@@ -85,7 +80,19 @@ class PropertiesController < ApplicationController
     end
   end
   
+  def update_calendar
+    @events = @property.events.in_range(Event.month_boundaries(Date.today + params[:new_month].to_i.months))
+    
+    render( :update ){|page| 
+      page.replace_html "calendar_display", :partial => "/events/calendar", :locals => { :month => params[:new_month].to_i, :events => @events }
+    }
+  end
+  
   private
+  def find_property
+    @property = Property.find(params[:id]) if params[:id]
+  end
+  
   def get_user
     if logged_in?
       @user = current_user

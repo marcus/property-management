@@ -85,6 +85,7 @@ class PropertiesController < ApplicationController
     
     render( :update ){|page| 
       page.replace_html "calendar_display", :partial => "/events/calendar", :locals => { :month => params[:new_month].to_i, :events => @events }
+      page.replace_html "events_list", :partial => "/events/list", :locals => { :events_list => @events }
     }
   end
   

@@ -1,15 +1,15 @@
 class Event < ActiveRecord::Base
   belongs_to :property
   named_scope :in_range, lambda { |range| 
-    { :conditions => ['starts_at >= ? OR ends_at <= ?', range[0].to_date.to_time, (range[1].to_date.to_time + 1.day - 1.second)] }
+    start = range[0].to_date.to_time
+    finish = range[1].to_date.to_time + 1.day - 1.second
+    { :conditions => ['(starts_at >= ? AND starts_at<= ?) OR (ends_at <= ? AND ends_at >= ?)', start, finish, finish, start]}
   }
   
   # Events that begin, end or span a given date, accepts Time or Date objects
   named_scope :for_date, lambda { |date|
-    # Convert date to midnight of the previous day and midnight of that day
     end_time = date.to_date.to_time
     begin_time = date.to_date.to_time + 1.day - 1.second
-  
     { :conditions => ['starts_at <= ? AND ends_at >= ?', begin_time, end_time] }
   }
   

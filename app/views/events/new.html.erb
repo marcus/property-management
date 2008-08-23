@@ -4,27 +4,27 @@
   <%= f.error_messages %>
 
   <p>
-		<%= f.label :name %><br />
+    <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-		<%= f.label :description %><br />
+    <%= f.label :description %><br />
     <%= f.text_area :description %>
   </p>
   <p>
-		<%= f.label :property_id %><br />
+    <%= f.label :property_id %><br />
     <%= f.select :property_id, @properties.map{|p| [p.name, p.id]} %>
   </p>
   <p>
-		<%= f.label :starts_at %><br />
+    <%= f.label :starts_at %><br />
     <%= f.date_select :starts_at %>
   </p>
   <p>
-		<%= f.label :ends_at %><br />
+    <%= f.label :ends_at %><br />
     <%= f.date_select :ends_at %>
   </p>
   <p>
-		<%= f.label :event_type %><br />
+    <%= f.label :event_type %><br />
     <%= f.select :event_type, event_types %>
   </p>
   <p>

@@ -2,7 +2,7 @@
    <% if !@properties.blank? %>
      <% for property in @properties %>
           <% if !property.featured_image.blank? %>
-            <%= link_to (image_tag property.featured_image.attached.url(:medium), :class => "front-page-property"), property %>
+            <%= link_to (image_tag property.featured_image.photo.url(:medium), :class => "front-page-property"), property %>
          <% end %>
      <% end %>
    <% else %>

@@ -30,16 +30,8 @@
 
 </div>
 <div style="clear:both;"></div>
-<div id="events">
-   <% if @events_list.length > 0 %>
-     <% for event in @events_list %>
-       <%= link_to event.name, event_path(event) %><br/>
-       <%= event.starts_at.strftime('%a %B %d, %G') %>
-     <% end %>
-
-   <% else %>
-     No events have been created yet. &nbsp;<%= link_to 'New Event', new_event_path %>
-   <% end %>
+<div id="events_list">
+  <%= render :partial => "/events/list", :locals => {:events_list => @events_list} %>
 </div>
 
 <div id="calendar_display">

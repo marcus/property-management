@@ -1,6 +1,4 @@
 class EventsController < ApplicationController
-  # GET /events
-  # GET /events.xml
   def index
     if params[:property_id]
       @events = Event.find_all_by_property_id(params[:property_id])
@@ -15,8 +13,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/1
-  # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
 
@@ -26,8 +22,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/new
-  # GET /events/new.xml
   def new
     all_properties
     @event = Event.new
@@ -37,14 +31,11 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/1/edit
   def edit
     all_properties
     @event = Event.find(params[:id])
   end
 
-  # POST /events
-  # POST /events.xml
   def create
     @event = Event.new(params[:event])
     respond_to do |format|
@@ -59,8 +50,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # PUT /events/1
-  # PUT /events/1.xml
   def update
     @event = Event.find(params[:id])
 
@@ -75,8 +64,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.xml
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
@@ -88,6 +75,11 @@ class EventsController < ApplicationController
   end
   
   private
+  def find_event
+    @event = Event.find(params[:id]) if params[:id]
+    @property = Property.find(params[:id]) if params[:property_id]
+  end
+  
   def all_properties
     @properties = Property.find(:all)
   end

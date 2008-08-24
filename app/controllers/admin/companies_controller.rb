@@ -2,6 +2,7 @@
 class Admin::CompaniesController < ApplicationController
   
   before_filter :get_current_company#, :except => [:create]
+  layout 'admin/layouts/layout'
   
   def index
     

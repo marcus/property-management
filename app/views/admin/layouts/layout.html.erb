@@ -1,0 +1,13 @@
+<% @content_for_layout = capture do %>
+  <!-- any admin specific layout content -->
+  <%= tabnav :admin %>
+  
+  <div class="admin_content">
+
+    <%= yield %>
+
+  </div>
+  <!-- admin specific layout footer content -->
+<% end %>
+
+<%= render 'layouts/application', { 'content_for_layout' => @content_for_layout } %>

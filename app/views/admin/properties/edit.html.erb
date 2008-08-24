@@ -1,19 +1,20 @@
-<h1>Editing property</h1>
+<h1>Editing <%= @property.name %></h1>
 
 <% form_for(@property) do |f| %>
   <%= f.error_messages %>
 
   <p>
-	 <%= f.label :name %><br />
+    <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
-  
+
   <p>
-	 <%= f.label :description %><br />
+    <%= f.label :description %><br />
     <%= f.text_area :description, :rows => 4 %>
   </p>
+
   <p>
-	 <%= f.label :location %><br />
+    <%= f.label :location %><br />
     <%= f.text_field :location %>
   </p>
   <p>

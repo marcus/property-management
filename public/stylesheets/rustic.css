@@ -1,11 +1,6 @@
 /* @override 
-	http://localhost:3000/stylesheets/rustic.css?1209271689
-	http://localhost:3000/stylesheets/rustic.css?1211673188
-	http://localhost:3000/stylesheets/rustic.css?1212035059
-	http://property.dev/stylesheets/rustic.css?1212180458
-	http://property.dev/stylesheets/rustic.css?1212278672
-	http://property.dev/stylesheets/rustic.css?1212279404
-	http://property.dev/stylesheets/rustic.css?1212873820
+	http://property.dev/stylesheets/rustic.css?1212874332
+	http://property.dev/stylesheets/rustic.css?1219534184
 */
 
 body {
@@ -51,9 +46,11 @@ h2 {
   font-family: Georgia, "Times New Roman", Times, serif;
   color: #2d2920;
 }
+
 h3 {
   
 }
+
 .fieldWithErrors {
   padding: 2px;
   background-color: red;
@@ -96,7 +93,7 @@ h3 {
   width: 960px;
   padding: 5px;
   margin: 0 auto;
-
+  
 
 /* the auto margins (in conjunction with a width) center the page */
   top: -10px;
@@ -182,8 +179,8 @@ h3 {
 }
 
 .front-name a, .front-name a:visited, .front-name a:active, .front-name a:hover {
-   text-decoration: none;
-   color: #dadaca;
+  text-decoration: none;
+  color: #dadaca;
 }
 
 /* @end */
@@ -197,12 +194,12 @@ h3 {
   width: 475px;
 }
 
-#property_description {
+#property_desc {
   float: left;
   width: 476px;
 }
 
-#property_description p {
+#property_desc p {
   padding-left: 10px;
 }
 
@@ -235,12 +232,14 @@ h3 {
   width: 900px;
 }
 
-/* @group Admin Tabs */
+.admin_content {
+  padding: 5px;  
+}
 
+/* @group Admin Tabs */
 .admin_tabnav {
   color: #2d2920;
   border-bottom: 1px solid #6f654f;
-  margin: 13px 0px 0px 0px;
   padding: 0px;
   z-index: 1;
   padding-left: 10px
@@ -316,4 +315,14 @@ h3 {
   text-align: center;
   padding-left: 4px;
   font: bold 13px "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+#login_form {
+  text-align: left;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  xborder: 4px solid;
+  padding: 10px;
+
 }

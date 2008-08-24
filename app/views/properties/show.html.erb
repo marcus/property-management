@@ -6,35 +6,36 @@
    <h2><%=h @property.name %></h2>
 </div>
 
-<div id="property_description">
+<div id="property_desc">
    <p><%= h @property.description %></p>
 </div>
 
 <div id="property_images">
-<% if !@property.attachments.blank? %>
-   <ul class="property_image">
-  <% for attachment in @property.attachments %>
-    <li>
-      <% if attachment.attached_content_type.include?("image")%>
-         <%= lightbox_image_tag(attachment.attached.url(:small), attachment.attached.url(:large), "album name",
-                                                        {:class=>"images"}, :title => attachment.description) %>
-         <br />
-         <p class="property_image_name"><%= attachment.name %></p>
-      <% end %>
-   </li>
+  <% if !@property.property_photos.blank? %>
+     <ul class="property_image">
+    <% for p in @property.property_photos %>
+      <li>
+           <%= lightbox_image_tag(p.photo.url(:small), p.photo.url(:large), "album name",
+                                                          {:class=>"images"}, :title => p.description) %>
+           <br />
+           <p class="property_image_name"><%= p.name %></p>
+     </li>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
-<% else %>
-  
+</div>
+
+<div style="clear:both;"></div>
+<% if !current_user.blank? %>
+   <% if current_user.allowed_to? :view_event_details, @property %>
+   
+    <div id="events_list">
+      <%= render :partial => "/events/list", :locals => {:events_list => @events_list} %>
+    </div>
+
+    <div id="calendar_display">
+       <%= render :partial => 'events/calendar' %>
+    </div>
+    <div style="clear:both;"></div>
+  <% end %>
 <% end %>
-
-</div>
-<div style="clear:both;"></div>
-<div id="events_list">
-  <%= render :partial => "/events/list", :locals => {:events_list => @events_list} %>
-</div>
-
-<div id="calendar_display">
-   <%= render :partial => 'events/calendar' %>
-</div>
-<div style="clear:both;"></div>

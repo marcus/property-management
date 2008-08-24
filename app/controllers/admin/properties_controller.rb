@@ -4,6 +4,7 @@ class Admin::PropertiesController < ApplicationController
   before_filter :get_context
   before_filter :get_property, :only => [:update, :destroy ]
   before_filter :authorize
+  layout 'admin/layouts/layout'
 
   def index
     # TODO How do I make sure an admin sees *all* properties in the business; 

@@ -1,14 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
     admin.resource :company
-    admin.resources :properties#, :has_many => [:events, :attachments]
+    admin.resources :properties, :has_many => [:events, :attachments, :property_photos]
   end
   
   map.resources :events, :collection => { 'update_calendar' => :get }
   map.resources :users
   map.resource :session
   map.resources :attachments
-  map.resources :properties, :has_many => [:events, :attachments]
+  map.resources :properties, :has_many => [:events, :attachments, :property_photos]
   map.resources :company
   map.root :controller => "properties"
   

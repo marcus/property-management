@@ -19,7 +19,7 @@ render_tabnav :admin, :generate_css => false do
 
    add_tab do |t| 
        t.named 'Manage Company'
-       t.links_to :controller => 'company', :action => 'edit'
+       t.links_to edit_admin_company_url(current_company)
    end# if current_user.admin?
 end
 

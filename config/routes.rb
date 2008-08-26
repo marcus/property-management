@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
-    admin.resource :company
+    admin.resources :companies
     admin.resources :properties, :has_many => [:events, :attachments, :property_photos]
   end
   
@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session
   map.resources :attachments
   map.resources :properties, :has_many => [:events, :attachments, :property_photos]
-  map.resources :company
+  map.resources :companies
   map.root :controller => "properties"
   
   map.signup '/signup', :controller => 'users', :action => 'new'

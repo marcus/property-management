@@ -6,7 +6,7 @@
         <div class="manage-properties-image">
           <%= link_to (image_tag property.featured_image.photo.url(admin_thumbnail_size)),
             admin_property_path(property) %>
-          <br /><%= property.name %>
+          <br /><%= link_to property.name, admin_property_path(property) %><br />
         </div>
       <% else %>
         <%= link_to property.name, admin_property_path(property) %><br />

@@ -12,15 +12,42 @@
 #   :html => aHash #=> sets html options for the tabnav's div (es :html => {:class=> 'myCssClass', :id=>'myCssId'}) 
 #     
 render_tabnav :admin, :generate_css => false do
-   add_tab do |t|
-       t.named 'Manage Properties'
-       t.links_to :controller => 'properties'
-   end
+  add_tab do |t|
+    t.named 'Manage Properties'
+    t.links_to :controller => 'properties'
+  end
 
-   add_tab do |t| 
-       t.named 'Manage Company'
-       t.links_to edit_admin_company_url(current_company)
-   end# if current_user.admin?
+  add_tab do |t| 
+    t.named 'Manage Company'
+    t.links_to edit_admin_company_url(current_company)
+    #t.style 'test'
+  end# if current_user.admin?
+   
+  if !@property.blank?
+    add_tab do |t|
+      t.named 'Edit Information'
+      t.links_to edit_admin_property_url(@property)
+      t.li_options = {:class => 'sub_tab'} 
+    end
+    
+    add_tab do |t|
+      t.named 'Edit Photos'
+      t.links_to admin_property_property_photos_url(@property)
+      t.li_options = {:class => 'sub_tab'} 
+    end
+    
+    add_tab do |t|
+      t.named 'Edit Attachments'
+      t.links_to admin_property_attachments_url(@property)
+      t.li_options = {:class => 'sub_tab'} 
+    end
+    
+    add_tab do |t|
+      t.named 'Edit Occupancy'
+      t.links_to admin_property_events_url(@property)
+      t.li_options = {:class => 'sub_tab'} 
+    end
+  end
 end
 
   #add_tab do |t|

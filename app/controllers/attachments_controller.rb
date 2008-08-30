@@ -1,6 +1,7 @@
 class AttachmentsController < ApplicationController
-  # GET /attachments
-  # GET /attachments.xml
+  layout 'admin/layouts/layout'
+  before_filter :find_property_attachment
+  
   def index
     if params[:property_id]
       @attachments = Attachment.find_all_by_property_id(params[:property_id])
@@ -18,8 +19,6 @@ class AttachmentsController < ApplicationController
   # GET /attachments/1
   # GET /attachments/1.xml
   def show
-    @attachment = Attachment.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @attachment }
@@ -46,8 +45,6 @@ class AttachmentsController < ApplicationController
   # POST /attachments
   # POST /attachments.xml
   def create
-    @attachment = Attachment.new(params[:attachment])
-
     respond_to do |format|
       if @attachment.save
         notice = "You've successfully added an attachment to this property"
@@ -72,8 +69,6 @@ class AttachmentsController < ApplicationController
   # PUT /attachments/1
   # PUT /attachments/1.xml
   def update
-    @attachment = Attachment.find(params[:id])
-
     respond_to do |format|
       if @attachment.update_attributes(params[:attachment])
         flash[:notice] = 'Attachment was successfully updated.'
@@ -89,12 +84,18 @@ class AttachmentsController < ApplicationController
   # DELETE /attachments/1
   # DELETE /attachments/1.xml
   def destroy
-    @attachment = Attachment.find(params[:id])
     @attachment.destroy
 
     respond_to do |format|
       format.html { redirect_to(attachments_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  private
+  
+  def find_property_attachment
+    @property = Property.find(params[:property_id]) if params[:property_id]
+    @attachment = Attachment.find(params[:id]) if params[:attachment]
   end
 end

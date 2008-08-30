@@ -1,0 +1,31 @@
+<% form_for @property_photo, :url => { :action => "create" },:html => { :multipart => true } do |pp| %>
+  <%= pp.error_messages %>
+
+  <%= pp.file_field :photo %>
+
+  <p>
+    <%= pp.label :name %><br />
+    <%= pp.text_field :name %>
+  </p>
+  <p>
+    <%= pp.label :description, 'Description (optional)' %><br />
+    <%= pp.text_area :description, :rows => 2 %>
+  </p>
+
+  <% if !@properties.blank? %>
+     <p>
+       <%= pp.label :property_id %><br />
+       <%= pp.select :property_id, @properties.map{|p| [p.name, p.id]} %>
+     </p>
+  <% end %>
+  <p>
+    <%= pp.label :featured %><br />
+    Yes: <%= radio_button_tag :featured, true %><br />
+    No: <%= radio_button_tag :featured, false, :checked => true %>
+  </p>
+  <p>
+    <%= pp.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', attachments_path %>

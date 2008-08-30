@@ -1,7 +1,9 @@
 class EventsController < ApplicationController
+  layout 'admin/layouts/layout'
+  before_filter :find_property_event
   def index
-    if params[:property_id]
-      @events = Event.find_all_by_property_id(params[:property_id])
+    if @property
+      @events = Event.find_all_by_property_id(@property.id)
 
       respond_to do |format|
         format.html # index.html.erb
@@ -14,8 +16,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @event }
@@ -33,7 +33,6 @@ class EventsController < ApplicationController
 
   def edit
     all_properties
-    @event = Event.find(params[:id])
   end
 
   def create
@@ -51,8 +50,6 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
-
     respond_to do |format|
       if @event.update_attributes(params[:event])
         flash[:notice] = 'Event was successfully updated.'
@@ -65,7 +62,6 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
 
     respond_to do |format|
@@ -75,9 +71,9 @@ class EventsController < ApplicationController
   end
   
   private
-  def find_event
+  def find_property_event
     @event = Event.find(params[:id]) if params[:id]
-    @property = Property.find(params[:id]) if params[:property_id]
+    @property = Property.find(params[:property_id]) if params[:property_id]
   end
   
   def all_properties

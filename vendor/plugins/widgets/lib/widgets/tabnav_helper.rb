@@ -70,7 +70,7 @@ module Widgets
       out tag('ul', {} , true)
     
       @_tabnav.tabs.each do |tab|      
-        li_options = {}
+        li_options = tab.li_options || {} 
         li_options[:id] = "#{tab.html[:id]}_container" if tab.html[:id] 
         
         if tab.disabled?

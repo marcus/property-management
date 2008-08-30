@@ -1,0 +1,16 @@
+<h2><%= link_to 'Upload a new photo', new_admin_property_property_photo_url %></h2>
+
+<h2>Existing photos</h2>
+
+<% if !@property_photos.blank? %>
+  <% for pp in @property_photos %>
+    <div class="admin_property_photo" style="float:left;padding:5px">
+      <%= link_to (image_tag pp.photo.url(:small), :class=>"images", :title => pp.description), url_for(:action => :show, :id => pp.id) %><br />
+      <%= link_to 'Delete', url_for(:action => :destroy, :id => pp.id), :confirm => 'Are you sure?', :id => pp.id, :method => :delete %>    
+    </div>
+  <% end %>
+<% else %>
+  There are no photos uploaded for this property at this time.
+<% end %>
+
+<div style="clear:both"></div>

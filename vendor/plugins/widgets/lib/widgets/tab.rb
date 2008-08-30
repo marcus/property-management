@@ -2,7 +2,7 @@ module Widgets
   class Tab
     include Highlightable
     include Disableable
-    attr_accessor :link, :remote_link, :name, :html
+    attr_accessor :link, :remote_link, :name, :html, :li_options
     
     def initialize(opts={})
       @name = opts[:name] 
@@ -15,7 +15,8 @@ module Widgets
       self.disabled_if opts[:disabled_if] || proc { false }
       @html = opts[:html] || {} 
       @html[:title] = opts[:title] 
-     
+      @li_options = opts[:li_options] || {} 
+      
       yield(self) if block_given?
       
       self.highlights << @link if link? # it does highlight on itself

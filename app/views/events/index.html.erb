@@ -18,9 +18,9 @@
     <td><%=h event.starts_at %></td>
     <td><%=h event.ends_at %></td>
     <td><%=h event.event_type %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', url_for(:controller => 'events', :action => 'show', :id => event.id) %></td>
+    <td><%= link_to 'Edit', url_for(:controller => 'events', :action => 'edit', :id => event.id) %></td>
+    <td><%= link_to 'Delete', url_for(:controller => 'events', :action => 'destroy', :id => event.id), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

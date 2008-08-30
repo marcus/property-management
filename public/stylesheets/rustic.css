@@ -1,6 +1,8 @@
 /* @override 
 	http://property.dev/stylesheets/rustic.css?1212874332
 	http://property.dev/stylesheets/rustic.css?1219534184
+	http://property.dev/stylesheets/rustic.css?1220073242
+	http://property.dev/stylesheets/rustic.css?1220111429
 */
 
 body {
@@ -45,6 +47,11 @@ h1 {
 h2 {
   font-family: Georgia, "Times New Roman", Times, serif;
   color: #2d2920;
+}
+
+h2.property_header {
+  padding: 10px;
+  margin-top: 0;
 }
 
 h3 {
@@ -185,10 +192,6 @@ h3 {
 
 /* @end */
 
-#property_header {
-  padding: 10px;
-}
-
 #property_images {
   float: left;
   width: 475px;
@@ -233,7 +236,8 @@ h3 {
 }
 
 .admin_content {
-  padding: 5px;  
+  padding: 5px;
+  clear: both;
 }
 
 /* @group Admin Tabs */
@@ -246,14 +250,25 @@ h3 {
 }
 
 .admin_tabnav ul {
-  margin: 0px;
+  margin: 0px 0 0px 0px;
   padding: 10px 0px 0px;
+  xposition: relative;
+  xtop: -17px;
 }
 
 .admin_tabnav li {
   display: inline;
   overflow: hidden;
   list-style-type: none;
+  xfloat: right;
+}
+
+.admin_tabnav li.sub_tab {
+  xfloat: left;
+}
+
+.admin_tabnav li.sub_tab a {
+  background: #f1ee93;
 }
 
 .admin_tabnav li span.disabled {
@@ -305,10 +320,9 @@ h3 {
   border: 2px solid black;
   border-top: none;
   z-index: 2;
+  top: 0;
 }
-.admin_tabnav li.sub_tab a {
-  background: #f1ee93;
-}
+
 /* @end */
 
 .manage-properties-image {

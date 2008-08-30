@@ -9,11 +9,7 @@
   </p>
   <p>
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :property_id %><br />
-    <%= f.select :property_id, @properties.map{|p| [p.name, p.id]} %>
+    <%= f.text_area :description, :rows => 4 %>
   </p>
   <p>
     <%= f.label :starts_at %><br />
@@ -28,6 +24,7 @@
     <%= f.select :event_type, event_types %>
   </p>
   <p>
+    <%= hidden_field_tag :property_id, @property.id %>
     <%= f.submit "Create" %>
   </p>
 <% end %>

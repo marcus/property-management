@@ -37,6 +37,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
+    @event.property_id = @property.id
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'

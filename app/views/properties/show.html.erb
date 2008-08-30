@@ -2,9 +2,7 @@
 <%= stylesheet_link_tag 'lightbox' %>
 <%= stylesheet_link_tag 'events' %>
 
-<div id="property_header">
-   <h2><%=h @property.name %></h2>
-</div>
+<h2 class="property_header"><%=h @property.name %></h2>
 
 <div id="property_desc">
    <p><%= h @property.description %></p>
@@ -12,8 +10,8 @@
 
 <div id="property_images">
   <% if !@property.property_photos.blank? %>
-     <ul class="property_image">
-    <% for p in @property.property_photos %>
+    <ul class="property_image">
+      <% for p in @property.property_photos %>
       <li>
            <%= lightbox_image_tag(p.photo.url(:small), p.photo.url(:large), "album name",
                                                           {:class=>"images"}, :title => p.description) %>
@@ -25,17 +23,38 @@
   <% end %>
 </div>
 
+<h2 class="property_header">Attachments</h2>
+<% if !current_user.blank? %>
+  <% if current_user.allowed_to? :view_attachments, @property %>
+    
+    <% if !@property.attachments.blank? %>
+      <% for a in @property.attachments %>
+        <p>
+          <%= a.name %>
+        </p>
+      <% end %>
+    <% else %>
+      There are no attachments for this property.
+    <% end %>
+    
+    
+  <% end -%>
+<% end -%>
+
 <div style="clear:both;"></div>
 <% if !current_user.blank? %>
    <% if current_user.allowed_to? :view_event_details, @property %>
-   
+   <h2 class="property_header">Occupancy Events</h2>
+
+   <div id="calendar_display">
+      <%= render :partial => 'events/calendar' %>
+   </div>
+
     <div id="events_list">
-      <%= render :partial => "/events/list", :locals => {:events_list => @events_list} %>
+      <%= render :partial => "/events/list", :locals => {:events_list => @events_list, :property => @property} %>
     </div>
 
-    <div id="calendar_display">
-       <%= render :partial => 'events/calendar' %>
-    </div>
+
     <div style="clear:both;"></div>
   <% end %>
 <% end %>

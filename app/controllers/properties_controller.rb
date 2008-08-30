@@ -1,9 +1,9 @@
 class PropertiesController < ApplicationController
   # index show new edit create udpate destroy
-  before_filter :get_user, :find_property
+  before_filter :find_property, :except => ['index']
   
   def index
-    @properties = Property.find(:all)
+    @properties = current_company.properties.find(:all, :include => ['property_photos'])
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @properties }
@@ -11,7 +11,7 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = Property.find(params[:id], :include => ['events', 'attachments'])
+    #@property = Property.find(params[:id], :include => ['events', 'attachments'])
 
     # Events for list 
     if !params[:day]
@@ -91,12 +91,6 @@ class PropertiesController < ApplicationController
   
   private
   def find_property
-    @property = Property.find(params[:id]) if params[:id]
-  end
-  
-  def get_user
-    if logged_in?
-      @user = current_user
-    end
+    @property = current_company.properties.find(params[:id], :include => ['property_photos', 'attachments']) if params[:id]
   end
 end

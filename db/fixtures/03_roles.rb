@@ -47,6 +47,6 @@ end
 # Roles for business
 Role.seed(:name) do |s|
   s.name = "company_principal"
-  s.permissions = [ :view_admin ]
+  s.permissions = [ :view_admin, :manage_company ]
   s.context = "Company"
 end

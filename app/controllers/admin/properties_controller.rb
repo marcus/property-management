@@ -51,7 +51,8 @@ class Admin::PropertiesController < ApplicationController
     respond_to do |format|
       if @property.update_attributes(params[:property])
         flash[:notice] = 'Property was successfully updated.'
-        format.html { redirect_to(@property) }
+        #format.html { redirect_to(url_for :controller => 'properties', :action => 'show', :id => @property.id) }
+        format.html { render :controller => 'properties', :action => "index" }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

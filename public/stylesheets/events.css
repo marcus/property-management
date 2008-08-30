@@ -1,5 +1,7 @@
+/* @override http://property.dev/stylesheets/events.css?1219379227 */
+
 #events_list {
-  float: left;
+  float: right;
   width: 500px;
 }
 #calendar_display {
@@ -16,7 +18,7 @@
   text-align: right;
   padding-top: 1em;
   padding-bottom: 0.7em;
-	background-color: #A3C159;
+  background-color: #A3C159;
 }
 .dayName th {
   font-size: 0.7em;

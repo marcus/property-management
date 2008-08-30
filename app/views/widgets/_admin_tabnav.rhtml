@@ -20,8 +20,7 @@ render_tabnav :admin, :generate_css => false do
   add_tab do |t| 
     t.named 'Manage Company'
     t.links_to edit_admin_company_url(current_company)
-    #t.style 'test'
-  end# if current_user.admin?
+  end# if current_user.allowed_to? :edit_company, @company # For this to work we'll have to always have the company cached
    
   if !@property.blank?
     add_tab do |t|

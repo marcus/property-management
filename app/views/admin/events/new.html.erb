@@ -1,27 +1,23 @@
-<h1>New event</h1>
+<h1>New occupancy:</h1>
 
-<% form_for(@event) do |f| %>
+<% form_for(@event, :url => {:controller => 'admin/events', :action => 'create'}) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :name, "Occupant name" %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :description %><br />
+    <%= f.label :description, "Notes (optional)" %><br />
     <%= f.text_area :description, :rows => 4 %>
   </p>
   <p>
-    <%= f.label :starts_at %><br />
+    <%= f.label :starts_at, "From" %><br />
     <%= f.date_select :starts_at %>
   </p>
   <p>
-    <%= f.label :ends_at %><br />
+    <%= f.label :ends_at, "Until" %><br />
     <%= f.date_select :ends_at %>
-  </p>
-  <p>
-    <%= f.label :event_type %><br />
-    <%= f.select :event_type, event_types %>
   </p>
   <p>
     <%= hidden_field_tag :property_id, @property.id %>

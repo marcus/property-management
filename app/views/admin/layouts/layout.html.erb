@@ -1,9 +1,12 @@
 <% @content_for_layout = capture do %>
   <!-- any admin specific layout content -->
   <%= tabnav :admin %>
-  
+    
   <div class="admin_content">
-
+    <% if !@property.blank? %>
+      <h2><%= @property.name %></h2>
+      <%= image_tag @property.property_photos.featured[0].photo.url(:thumbnail), :style => 'float:right;' %>
+    <% end %>
     <%= yield %>
 
   </div>

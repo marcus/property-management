@@ -19,7 +19,7 @@
       </div>
       <div id="top-links">about | contact us</div>
       <div id="login-box">
-         <% if current_user.blank? %>
+         <% if current_user.anonymous? %>
             <%= link_to 'User Login', '/login' %>
          <% else %>
             <% if can?(:view_admin) %>

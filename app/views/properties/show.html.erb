@@ -8,7 +8,7 @@
    <p><%= h @property.description %></p>
 </div>
 
-<div id="property_images">
+<div id="property_images" class="bordered_section">
   <% if !@property.property_photos.blank? %>
     <ul class="property_image">
       <% for p in @property.property_photos %>
@@ -23,38 +23,35 @@
   <% end %>
 </div>
 
-<h2 class="property_header">Attachments</h2>
-<% if !current_user.blank? %>
   <% if current_user.allowed_to? :view_attachments, @property %>
+    <div id="property_attachments" class="bordered_section">
+      <h2 class="property_header">Attachments</h2>
     
-    <% if !@property.attachments.blank? %>
-      <% for a in @property.attachments %>
-        <p>
-          <%= a.name %>
-        </p>
+      <% if !@property.attachments.blank? %>
+        <% for a in @property.attachments %>
+          <p>
+            <%= a.name %>
+          </p>
+        <% end %>
+      <% else %>
+        <p>There are no attachments for this property.</p>
       <% end %>
-    <% else %>
-      There are no attachments for this property.
-    <% end %>
-    
+    </div>
     
   <% end -%>
-<% end -%>
 
 <div style="clear:both;"></div>
-<% if !current_user.blank? %>
-   <% if current_user.allowed_to? :view_event_details, @property %>
-   <h2 class="property_header">Occupancy Events</h2>
+  <% if current_user.allowed_to? :view_event_details, @property %>
+    <div id="property_events" class="bordered_section">
+      <h2 class="property_header">Occupancy Events</h2>
 
-   <div id="calendar_display">
-      <%= render :partial => 'events/calendar' %>
-   </div>
+      <div id="calendar_display">
+        <%= render :partial => 'events/calendar' %>
+      </div>
 
-    <div id="events_list">
-      <%= render :partial => "/events/list", :locals => {:events_list => @events_list, :property => @property} %>
+      <div id="events_list">
+        <%= render :partial => "/events/list", :locals => {:events_list => @events_list, :property => @property} %>
+      </div>
     </div>
-
-
     <div style="clear:both;"></div>
   <% end %>
-<% end %>

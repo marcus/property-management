@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080703161833) do
+ActiveRecord::Schema.define(:version => 20080906201658) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attached_file_name"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20080703161833) do
     t.string   "event_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "owner_id",    :limit => 11
   end
 
   create_table "memberships", :force => true do |t|

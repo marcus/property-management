@@ -3,6 +3,7 @@ class PropertiesController < ApplicationController
   before_filter :find_property, :except => ['index']
   
   def index
+    # Active properties (TODO give the model scope)
     @properties = current_company.properties.find(:all, :include => ['property_photos'])
     respond_to do |format|
       format.html # index.html.erb
@@ -43,7 +44,8 @@ class PropertiesController < ApplicationController
 
   def create
     @property = Property.new(params[:property])
-
+    @property.company_id = current_company.id
+    
     respond_to do |format|
       if @property.save
         flash[:notice] = 'Property was successfully created.'
@@ -57,7 +59,7 @@ class PropertiesController < ApplicationController
   end
 
   def update
-    @property = Property.find(params[:id])
+    @property = current_company.properties.find(params[:id])
 
     respond_to do |format|
       if @property.update_attributes(params[:property])
@@ -80,17 +82,8 @@ class PropertiesController < ApplicationController
     end
   end
   
-  def update_calendar
-    @events = @property.events.in_range(Event.month_boundaries(Date.today + params[:new_month].to_i.months))
-    
-    render( :update ){|page| 
-      page.replace_html "calendar_display", :partial => "/events/calendar", :locals => { :month => params[:new_month].to_i, :events => @events }
-      page.replace_html "events_list", :partial => "/events/list", :locals => { :events_list => @events }
-    }
-  end
-  
   private
   def find_property
-    @property = current_company.properties.find(params[:id], :include => ['property_photos', 'attachments']) if params[:id]
+    @property = current_company.properties.active.find(params[:id], :include => ['property_photos', 'attachments']) if params[:id]
   end
 end

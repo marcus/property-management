@@ -1,18 +1,34 @@
-class EventsController < ApplicationController
+class Admin::EventsController < ApplicationController
   layout 'admin/layouts/layout'
   before_filter :find_property_event
   def index
     if @property
-      @events = Event.find_all_by_property_id(@property.id)
+      # Events for list 
+      if !params[:day]
+        @events_list = @property.events.in_range(Event.month_boundaries(DateTime.now))
+      else
+        @date = params[:day].to_datetime
+        @events_list = @property.events.for_date(params[:day])
+      end
 
+      # Events for calendar
+      @events = @property.events.in_range(Event.month_boundaries(DateTime.now))
       respond_to do |format|
         format.html # index.html.erb
-        format.xml  { render :xml => @events }
       end
-      
+            
     else
       redirect_to '/'
     end
+  end
+
+  def update_calendar
+    @events = @property.events.in_range(Event.month_boundaries(Date.today + params[:new_month].to_i.months))
+    
+    render( :update ){|page| 
+      page.replace_html "calendar_display", :partial => "/events/calendar", :locals => { :month => params[:new_month].to_i, :events => @events }
+      page.replace_html "events_list", :partial => "/events/list", :locals => { :events_list => @events }
+    }
   end
 
   def show
@@ -38,10 +54,13 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     @event.property_id = @property.id
+    @event.event_type ||= "occupancy"
+    @event.owner_id ||= current_user.id
+    
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'
-        format.html { redirect_to(@event) }
+        format.html { redirect_to(admin_property_event_path(@property, @event)) }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
         flash[:notice] = 'There was a problem saving the event'
@@ -54,7 +73,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.update_attributes(params[:event])
         flash[:notice] = 'Event was successfully updated.'
-        format.html { redirect_to(@event) }
+        format.html { redirect_to(admin_property_event_path(@property, @event)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

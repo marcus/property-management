@@ -1,0 +1,21 @@
+<p>
+  <b>Occupant:</b>
+  <%=h @event.name %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%=h @event.description %>
+</p>
+
+<p>
+  <b>From:</b>
+  <%=h @event.starts_at %>
+</p>
+
+<p>
+  <b>Until:</b>
+  <%=h @event.ends_at %>
+</p>
+
+<%= link_to 'Edit', :action => 'edit' %>

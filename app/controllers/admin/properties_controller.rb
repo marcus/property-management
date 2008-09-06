@@ -7,8 +7,6 @@ class Admin::PropertiesController < ApplicationController
   layout 'admin/layouts/layout'
 
   def index
-    # TODO How do I make sure an admin sees *all* properties in the business; 
-    # are they automatically added as a member when the property is created?
     if current_user.admin?
       @properties = current_company.properties
     else

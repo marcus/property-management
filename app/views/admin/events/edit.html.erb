@@ -1,14 +1,14 @@
-<h1>Editing event</h1>
+<h1>Editing occupancy</h1>
 
-<% form_for(@event) do |f| %>
+<% form_for(@event, :url => {:controller => 'admin/events', :action => 'update'}) do |f| %>
   <%= f.error_messages %>
 
   <p>
-		<%= f.label :name %><br />
+    <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-		<%= f.label :description %><br />
+    <%= f.label :description %><br />
     <%= f.text_area :description, :rows => 4 %>
   </p>
   <p>
@@ -16,16 +16,16 @@
    <%= f.select :property_id, @properties.map{|p| [p.name, p.id]} %>
   </p>
   <p>
-		<%= f.label :starts_at %><br />
+    <%= f.label :starts_at %><br />
     <%= f.datetime_select :starts_at %>
   </p>
   <p>
-		<%= f.label :ends_at %><br />
+    <%= f.label :ends_at %><br />
     <%= f.datetime_select :ends_at %>
   </p>
   <p>
-		<%= f.label :event_type %><br />
-    <%= f.select :event_type, event_types %>
+    <%= f.label :owner_id, "Occupancy administrative contact" %><br />
+    <%= f.select :owner_id, @property.members.map{|m|[m.name, m.id]} %>
   </p>
   <p>
     <%= f.submit "Update" %>

@@ -1,0 +1,13 @@
+<div id="property_events" class="bordered_section">
+  <h2 class="property_header">Occupancies</h2>
+
+  <div id="calendar_display">
+    <%= render :partial => 'events/calendar' %>
+  </div>
+
+  <div id="events_list">
+    <%= render :partial => "/events/list", :locals => {:events_list => @events_list, :property => @property} %>
+  </div>
+</div>
+<div style="clear:both;"></div>
+

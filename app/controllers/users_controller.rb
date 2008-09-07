@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  # render new.rhtml
+  require 'color_generator'
+  
   def new
   end
 
@@ -10,6 +11,7 @@ class UsersController < ApplicationController
     # uncomment at your own risk
     # reset_session
     @user = User.new(params[:user])
+    @user.color = random_color
     @user.save
     if @user.errors.empty?
       self.current_user = @user

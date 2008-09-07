@@ -85,8 +85,7 @@ class Admin::EventsController < ApplicationController
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to(events_url) }
-      format.xml  { head :ok }
+      format.html { redirect_to(admin_property_path(@property)) }
     end
   end
   

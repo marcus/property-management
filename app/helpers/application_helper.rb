@@ -1,4 +1,4 @@
-# Methods added to this helper will be available to all templates in the application.
+# Methods added to this helper will be available to all templates in the application.;
 module ApplicationHelper
   def can?(permission, con = nil)
     if con.blank? : con = current_company
@@ -22,6 +22,7 @@ module ApplicationHelper
       c_events.each do |e|
         if e.starts_at == d || ( e.starts_at.to_date <= d && e.ends_at.to_date >= d ) 
           cell_attrs[:class] = 'specialDay'
+          cell_attrs[:style] = "border-top:3px solid ##{e.owner.color};"
           cell_text = link_to(d.day, events_url(:day => d))
         end
       end

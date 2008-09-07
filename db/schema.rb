@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080906201658) do
+ActiveRecord::Schema.define(:version => 20080906220248) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attached_file_name"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20080906201658) do
     t.string   "lastname"
     t.boolean  "admin",                                   :default => false
     t.boolean  "status",                                  :default => true
+    t.string   "color"
   end
 
 end

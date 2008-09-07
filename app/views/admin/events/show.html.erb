@@ -18,4 +18,10 @@
   <%=h @event.ends_at %>
 </p>
 
-<%= link_to 'Edit', :action => 'edit' %>
+<p>
+  <b>Owner:</b>
+  <%=h @event.owner.name %>
+</p>
+
+<%= link_to 'Edit', :action => 'edit' %> | 
+<%= link_to 'Delete', url_for(:controller => 'admin/events', :action => :destroy, :id => @event.id), :confirm => 'Are you sure?', :id => @event.id, :method => :delete %>

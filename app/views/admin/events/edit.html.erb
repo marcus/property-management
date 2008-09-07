@@ -4,24 +4,20 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :name, "Occupant name" %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :description %><br />
+    <%= f.label :description, "Notes (optional)" %><br />
     <%= f.text_area :description, :rows => 4 %>
   </p>
   <p>
-   <%= f.label :property_id %><br />
-   <%= f.select :property_id, @properties.map{|p| [p.name, p.id]} %>
+    <%= f.label :starts_at, "From" %><br />
+    <%= f.date_select :starts_at %>
   </p>
   <p>
-    <%= f.label :starts_at %><br />
-    <%= f.datetime_select :starts_at %>
-  </p>
-  <p>
-    <%= f.label :ends_at %><br />
-    <%= f.datetime_select :ends_at %>
+    <%= f.label :ends_at, "Until" %><br />
+    <%= f.date_select :ends_at %>
   </p>
   <p>
     <%= f.label :owner_id, "Occupancy administrative contact" %><br />

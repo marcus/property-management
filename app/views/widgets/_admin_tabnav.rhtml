@@ -23,27 +23,34 @@ render_tabnav :admin, :generate_css => false do
   end# if current_user.allowed_to? :edit_company, @company # For this to work we'll have to always have the company cached
    
   if !@property.blank?
+    
     add_tab do |t|
-      t.named 'Edit Information'
+      t.named @property.name
+      t.links_to admin_property_url(@property)
+      t.li_options = {:class => 'sub_tab'} 
+    end
+    
+    add_tab do |t|
+      t.named 'Occupancies'
+      t.links_to admin_property_events_url(@property)
+      t.li_options = {:class => 'sub_tab'} 
+    end
+    
+    add_tab do |t|
+      t.named 'Information'
       t.links_to edit_admin_property_url(@property)
       t.li_options = {:class => 'sub_tab'} 
     end
     
     add_tab do |t|
-      t.named 'Edit Photos'
+      t.named 'Photos'
       t.links_to admin_property_property_photos_url(@property)
       t.li_options = {:class => 'sub_tab'} 
     end
     
     add_tab do |t|
-      t.named 'Edit Attachments'
+      t.named 'Attachments'
       t.links_to admin_property_attachments_url(@property)
-      t.li_options = {:class => 'sub_tab'} 
-    end
-    
-    add_tab do |t|
-      t.named 'Edit Occupancies'
-      t.links_to admin_property_events_url(@property)
       t.li_options = {:class => 'sub_tab'} 
     end
   end

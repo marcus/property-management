@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag 'timeframe/gui.css' %>
+<%= stylesheet_link_tag 'timeframe/timeframe.css' %>
 <h1>Editing occupancy</h1>
 
 <% form_for(@event, :url => {:controller => 'admin/events', :action => 'update'}) do |f| %>
@@ -11,22 +13,34 @@
     <%= f.label :description, "Notes (optional)" %><br />
     <%= f.text_area :description, :rows => 4 %>
   </p>
+  <div id="calendars"></div>
+
   <p>
-    <%= f.label :starts_at, "From" %><br />
-    <%= f.date_select :starts_at %>
+    <%= f.label :starts_at, "From" %>
+    <%= f.text_field :starts_at, :size => 10 %>
+    <%= f.label :ends_at, "Until" %>
+    <%= f.text_field :ends_at, :size => 10 %>
+    <span id="reset">(reset)</span>
   </p>
-  <p>
-    <%= f.label :ends_at, "Until" %><br />
-    <%= f.date_select :ends_at %>
-  </p>
+
   <p>
     <%= f.label :owner_id, "Occupancy administrative contact" %><br />
     <%= f.select :owner_id, @property.members.map{|m|[m.name, m.id]} %>
   </p>
+
   <p>
+    <%= hidden_field_tag :property_id, @property.id %>
     <%= f.submit "Update" %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<script type="text/javascript" charset="utf-8">
+  //<![CDATA[
+    new Timeframe('calendars', {
+      startField: 'event_starts_at',
+      endField: 'event_ends_at',
+      earliest: new Date(),
+      resetButton: 'reset'
+    });
+  //]]>
+</script>

@@ -1,3 +1,5 @@
+require 'color_generator'
+
 User.seed(:login) do |s|
   s.login = "anon"
   s.email = "anon@nwprops.com"
@@ -6,6 +8,7 @@ User.seed(:login) do |s|
   s.status = 1
   s.firstname = "Anonymous"
   s.lastname = "User"
+  s.color = random_color
   s.admin = 0
 end
 
@@ -17,6 +20,7 @@ User.seed(:login) do |s|
   s.status = 1
   s.firstname = "Carl"
   s.lastname = "Johnson"
+  s.color = random_color
   s.admin = 0
 end
 
@@ -28,5 +32,6 @@ User.seed(:login) do |s|
   s.status = 1
   s.firstname = "Marcus"
   s.lastname = "Vorwaller"
+  s.color = random_color
   s.admin = 1
 end

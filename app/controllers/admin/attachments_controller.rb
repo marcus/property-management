@@ -1,4 +1,4 @@
-class AttachmentsController < ApplicationController
+class Admin::AttachmentsController < ApplicationController
   layout 'admin/layouts/layout'
   before_filter :find_property_attachment
   

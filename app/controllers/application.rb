@@ -25,10 +25,6 @@ class ApplicationController < ActionController::Base
       return true
     end
   end
-
-  def get_current_company
-    @company = current_company
-  end
   
   def authorize(control = params[:controller], action = params[:action])
     allowed = current_user.allowed_to?({:controller => control, :action => action}, current_company)

@@ -57,10 +57,8 @@ class User < ActiveRecord::Base
   def allowed_to?(action, context)
     if context
       return true if admin?
-      
       # No action allowed on inactive contexts
       return false unless context.active?
-      
       role = role_for_context(context)
       return false unless role
       role.allowed_to?(action)

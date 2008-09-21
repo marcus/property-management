@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.namespace :admin do |admin|
     admin.resources :companies
     admin.resources :properties, :has_many => [:events, :attachments, :property_photos]
@@ -10,14 +11,17 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :attachments
   map.resources :properties, :has_many => [:events, :attachments, :property_photos]
   map.resources :companies
-  map.root :controller => "properties"
+  map.resources :pages
+  
+  map.root :controller => "properties", :action => 'index'
   
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   
-
-
+  
+  map.page ':slug', :controller => 'pages', :action => 'show'
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

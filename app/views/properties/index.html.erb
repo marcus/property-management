@@ -10,13 +10,10 @@
    <% end %>
 </div>
 
-
-
-
 <div id="featured-names">
    <% if !@properties.blank? %>
      <% for property in @properties %>
-       <div class="front-name"><%= link_to property.name, :controller => 'properties', :action => property.id %></div>
+       <div class="front-name"><%= link_to property.name, url_for(property) %></div>
      <% end %>
    <% end %>
 </div>

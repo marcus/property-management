@@ -3,6 +3,7 @@ class Company < ActiveRecord::Base
   named_scope :inactive, :conditions => {:active => false}
   
   has_many :properties
+  has_many :pages
   has_many :members, :through => :memberships, :source => :user
 
   has_attached_file :logo, 

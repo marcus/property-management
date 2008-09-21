@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080906220248) do
+ActiveRecord::Schema.define(:version => 20080920212440) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attached_file_name"
@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(:version => 20080906220248) do
     t.string   "attached_file_size"
     t.string   "name"
     t.text     "description"
-    t.integer  "property_id",           :limit => 11
+    t.integer  "property_id",           :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position",              :limit => 11
+    t.integer  "position",              :limit => 8
   end
 
   create_table "companies", :force => true do |t|
@@ -29,37 +29,46 @@ ActiveRecord::Schema.define(:version => 20080906220248) do
     t.string  "email"
     t.string  "logo_file_name"
     t.string  "logo_content_type"
-    t.integer "logo_file_size",    :limit => 11
+    t.integer "logo_file_size",    :limit => 8
     t.boolean "active"
   end
 
   create_table "events", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "property_id", :limit => 11
+    t.integer  "property_id", :limit => 8
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.string   "event_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "owner_id",    :limit => 11
+    t.integer  "owner_id"
   end
 
   create_table "memberships", :force => true do |t|
-    t.integer "user_id",      :limit => 11
-    t.integer "context_id",   :limit => 11
-    t.integer "role_id",      :limit => 11
+    t.integer "user_id",      :limit => 8
+    t.integer "context_id",   :limit => 8
+    t.integer "role_id",      :limit => 8
     t.string  "context_type"
   end
 
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.text     "content"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "properties", :force => true do |t|
-    t.integer  "company_id",  :limit => 11
+    t.integer  "company_id",  :limit => 8
     t.string   "name"
     t.text     "description"
     t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",                    :default => true
+    t.boolean  "active",                   :default => true
   end
 
   create_table "property_photos", :force => true do |t|
@@ -69,8 +78,8 @@ ActiveRecord::Schema.define(:version => 20080906220248) do
     t.string   "name"
     t.text     "description"
     t.boolean  "featured"
-    t.integer  "property_id",        :limit => 11
-    t.integer  "position",           :limit => 11
+    t.integer  "property_id"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

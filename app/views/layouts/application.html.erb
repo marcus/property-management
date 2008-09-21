@@ -17,7 +17,13 @@
             <%= link_to (image_tag current_company.logo.url), "/" %>
          <% end %>
       </div>
-      <div id="top-links">about | contact us</div>
+      <div id="top-links">
+        <% if !current_company.pages.blank? %>
+          <% for page in current_company.pages %>
+            <%= link_to page.name, "/#{page.slug}" %>
+          <% end %>
+        <% end %>
+      </div>
       <div id="login-box">
          <% if current_user.anonymous? %>
             <%= link_to 'User Login', '/login' %>

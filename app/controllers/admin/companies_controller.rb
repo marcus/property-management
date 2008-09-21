@@ -46,5 +46,11 @@ class Admin::CompaniesController < ApplicationController
       end
     end
   end
+  
+  private
+  
+  def get_current_company
+    @company = current_company
+  end
 end
 

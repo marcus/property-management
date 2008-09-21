@@ -1,6 +1,6 @@
 <% if events_list.length > 0 %>
   <% for event in events_list %>
-    <h3 style="display:inline"><%= link_to event.name, admin_property_event_path(@property, event) %> </h3>Owner: <%= event.owner.name %>
+    <h3 style="display:inline"><%= link_to event.name, admin_property_event_path(@property, event) %> </h3>Admin: <%= event.owner.name %>
     <p><%= event.starts_at %>
     <% if (event.ends_at.month != event.starts_at.month) || (event.ends_at.day != event.starts_at.day) %>
       to <%= event.ends_at %>

@@ -5,6 +5,7 @@ Event.seed(:name, :property_id) do |s|
   s.starts_at = Date.today
   s.ends_at = Date.today + 7.days
   s.event_type = "occupancy"
+  s.owner_id = User.find_by_login('marcus').id
 end
 
 Event.seed(:name, :property_id) do |s|
@@ -14,6 +15,7 @@ Event.seed(:name, :property_id) do |s|
   s.starts_at = Date.today + 5.days
   s.ends_at = Date.today + 12.days
   s.event_type = "occupancy"
+  s.owner_id = User.find_by_login('marcus').id
 end
 
 Event.seed(:name, :property_id) do |s|
@@ -23,4 +25,5 @@ Event.seed(:name, :property_id) do |s|
   s.starts_at = Date.today + 10.days
   s.ends_at = Date.today + 17.days
   s.event_type = "occupancy"
+  s.owner_id = User.find_by_login('marcus').id
 end

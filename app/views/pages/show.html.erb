@@ -1,6 +1,6 @@
 <h2><%= @page.name %></h2>
 
-<p><%= textilize @page.content %></p>
+<p><%= simple_format @page.content %></p>
 
 <% if current_user.allowed_to?(:manage_company, current_company) %>
   <%= link_to 'Edit', edit_page_path(@page) %> |

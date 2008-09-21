@@ -1,6 +1,7 @@
 def random_color
   red, green, blue = rand*255,rand*255,rand*255
-  dec2hex (red*65536)+(green*255)+blue
+  color = dec2hex( (red*65536)+(green*255)+blue ).to_s
+  color = color.length < 6 ? "0#{color}" : color
 end
 
 

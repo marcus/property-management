@@ -1,10 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.;
 module ApplicationHelper
-  def can?(permission, con = nil)
-    if con.blank? : con = current_company end
-
-    current_user.allowed_to? permission, con
-  end
   
   def event_types
     ["occupancy", "other"]

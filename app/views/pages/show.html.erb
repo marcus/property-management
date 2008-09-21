@@ -3,5 +3,5 @@
 <p><%= simple_format @page.content %></p>
 
 <% if current_user.allowed_to?(:manage_company, current_company) %>
-  <%= link_to 'Edit', edit_page_path(@page) %> |
+  <%= link_to 'Edit', edit_page_path(@page) %>
 <% end %>

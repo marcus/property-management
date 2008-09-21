@@ -2,12 +2,19 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   
   helper :all # include all helpers, all the time
+  helper_method :can?
   
   before_filter :login_from_cookie
   
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'cf544ee8618e74d9fb102ebf0877dbcf'
+  
+  def can?(permission, con = nil)
+    if con.blank? : con = current_company end
+
+    current_user.allowed_to? permission, con
+  end
   
   def verify_logged_in
     if session[:user] == nil

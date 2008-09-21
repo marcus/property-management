@@ -98,4 +98,10 @@ class AttachmentsController < ApplicationController
     @property = Property.find(params[:property_id]) if params[:property_id]
     @attachment = Attachment.find(params[:id]) if params[:attachment]
   end
+  
+  def check_permissions
+    if !can? :manage_property
+      redirect_to "/"
+    end
+  end
 end

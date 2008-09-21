@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_filter :check_permissions, :except => [:show]
+  
   def index
     @pages = Page.find(:all)
 
@@ -52,7 +54,6 @@ class PagesController < ApplicationController
 
   def update
     @page = Page.find(params[:id])
-    logger.debug { "BLOODY asfasdfasfasfasdfasfasdf" }
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
@@ -73,6 +74,14 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(pages_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  private
+  
+  def check_permissions
+    if !can? :manage_company
+      redirect_to "/"
     end
   end
 end

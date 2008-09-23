@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   
   def can?(permission, con = nil)
     if con.blank? : con = current_company end
-
     current_user.allowed_to? permission, con
   end
   

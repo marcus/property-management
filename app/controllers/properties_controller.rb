@@ -29,59 +29,7 @@ class PropertiesController < ApplicationController
     end
 
   end
-
-  def new
-    @property = Property.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @property }
-    end
-  end
-
-  def edit
-  end
-
-  def create
-    @property = Property.new(params[:property])
-    @property.company_id = current_company.id
-    
-    respond_to do |format|
-      if @property.save
-        flash[:notice] = 'Property was successfully created.'
-        format.html { redirect_to(@property) }
-        format.xml  { render :xml => @property, :status => :created, :location => @property }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @property.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    @property = current_company.properties.find(params[:id])
-
-    respond_to do |format|
-      if @property.update_attributes(params[:property])
-        flash[:notice] = 'Property was successfully updated.'
-        format.html { redirect_to(@property) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @property.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @property.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(properties_url) }
-      format.xml  { head :ok }
-    end
-  end
-  
+ 
   private
   def find_property
     @property = current_company.properties.active.find(params[:id], :include => ['property_photos', 'attachments']) if params[:id]

@@ -6,24 +6,23 @@ def current_company
 end
 
 # index show new edit create udpate destroy
+default_admin = [ :index, :show, :new, :edit, :create, :update, :destroy ]
 
 AccessControl.map do |map|
   # Company scope
-  map.permission :add_properties,       { :properties        => [ :new, :create         ] }
-  map.permission :delete_properties,    { :properties        => [ :destroy              ] }
-  map.permission :deactivate_property,  { :properties        => [ :deactivate           ] }
-  map.permission :edit_company,         { :company           => [ :show, :edit, :update ] ,
-                                          :account           => [ :edit                 ] }
-  map.permission :view_admin,           { "admin/properties" => [ :index                ] }
-                                        
-  # Property scope                      
-  map.permission :edit_property,        { "admin/properties" => [ :update, :edit        ] }
-  map.permission :add_attachments,      { :attachments       => [ :new, :create         ] }
-  map.permission :delete_attachments,   { :attachments       => [ :destroy              ] }
-  map.permission :edit_attachments,     { :attachments       => [ :update, :edit        ] }
-  map.permission :view_attachments,     { :attachments       => [ :index, :show         ] }
-  map.permission :add_events,           { :events            => [ :new, :create         ] }
-  map.permission :remove_events,        { :events            => [ :destroy              ] }
-  map.permission :edit_events,          { :events            => [ :update, :edit        ] }
-  map.permission :view_event_details,   { :events            => [ :show                 ] }
+  map.permission :manage_properties,    { "admin/properties"        => [ :index, :show, :edit, :update        ] }
+  map.permission :admin_properties,     { "admin/properties"        => [ :new, :create, :destroy, :deactivate ] }
+  map.permission :manage_company,       { :company                  => [ :show, :edit, :update                ] ,
+                                          :account                  => [ :edit                                ] }
+  map.permission :view_admin,           { "admin/properties"        => [ :index                               ] }
+                                                                                                              
+  # Property scope - admin                                                                                    
+  map.permission :edit_property,        { "admin/properties"        => [ :show, :update, :edit                ] }
+  map.permission :manage_attachments,   { "admin/attachments"       => default_admin                            }
+  map.permission :manage_photos,        { "admin/property_photos"   => default_admin                            }
+  map.permission :manage_events,        { "admin/events"            => default_admin                            }
+                                                                                                              
+  # Property scope - user                                                                                     
+  map.permission :view_attachments,     { :attachments              => [ :show                                ] }
+  map.permission :view_events,          { :events                   => [ :show                                ] }
 end

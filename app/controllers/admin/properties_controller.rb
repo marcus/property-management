@@ -1,7 +1,5 @@
 class Admin::PropertiesController < ApplicationController
   # index show new edit create udpate destroy
-  before_filter :get_user
-  before_filter :get_context
   before_filter :get_property, :only => [:update, :destroy ]
   before_filter :authorize
   layout 'admin/layouts/layout'
@@ -34,11 +32,9 @@ class Admin::PropertiesController < ApplicationController
     respond_to do |format|
       if @property.save
         flash[:notice] = 'Property was successfully created.'
-        format.html { redirect_to(@property) }
-        format.xml  { render :xml => @property, :status => :created, :location => @property }
+        format.html { redirect_to(admin_property_path @property) }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @property.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -49,18 +45,13 @@ class Admin::PropertiesController < ApplicationController
     respond_to do |format|
       if @property.update_attributes(params[:property])
         flash[:notice] = 'Property was successfully updated.'
-        #format.html { redirect_to(url_for :controller => 'properties', :action => 'show', :id => @property.id) }
-        format.html { render :controller => 'properties', :action => "index" }
-        format.xml  { head :ok }
+        format.html { redirect_to(admin_property_path @property) }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @property.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /properties/1
-  # DELETE /properties/1.xml
   def destroy
     @property = Property.find(params[:id])
     @property.destroy
@@ -71,17 +62,9 @@ class Admin::PropertiesController < ApplicationController
   end
   
   private
-  def get_user
-    if logged_in?
-      @user = current_user
-    end
-  end
   
   def get_property
     @property = Property.find(params[:id])
   end
-  
-  def get_context
-    @company = current_company
-  end
+
 end

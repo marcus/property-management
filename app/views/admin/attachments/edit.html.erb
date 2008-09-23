@@ -1,25 +1,20 @@
 <h1>Editing attachment</h1>
 
-<% form_for(@attachment) do |f| %>
+<% form_for @attachment, :url => {:controller => 'admin/attachments', :action => 'update'}, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
     
   <p>
-		<%= f.label :name %><br />
+    <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-		<%= f.label :description %><br />
+    <%= f.label :description %><br />
     <%= f.text_area :description %>
   </p>
-  <p>
-		<%= f.label :property_id %><br />
-    <%= f.select :property_id, @properties.map{|p| [p.name, p.id]} %>
-  </p>
-
   <p>
     <%= f.submit "Update" %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @attachment %> |
-<%= link_to 'Back', attachments_path %>
+<%= link_to 'Show', admin_property_attachment_path(@property, @attachment) %> |
+<%= link_to 'Back', admin_property_attachments_path(@property) %>

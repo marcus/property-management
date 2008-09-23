@@ -11,20 +11,9 @@
   </p>
   <p>
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_area :description, :rows => 4%>
   </p>
-
-  <% if !@properties.blank? %>
-     <p>
-       <%= f.label :property_id %><br />
-       <%= f.select :property_id, @properties.map{|p| [p.name, p.id]} %>
-     </p>
-  <% end %>
-  <p>
-    <%= f.label :featured %><br />
-    Yes: <%= radio_button_tag :featured, true %><br />
-    No: <%= radio_button_tag :featured, false, :checked => true %>
-  </p>
+  
   <p>
     <%= f.submit "Create" %>
   </p>

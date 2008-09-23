@@ -18,9 +18,9 @@
     <td><%=h attachment.name %></td>
     <td><%=h attachment.description %></td>
     <td><%=h attachment.property.name %></td>
-    <td><%= link_to 'Show', attachment %></td>
-    <td><%= link_to 'Edit', edit_attachment_path(attachment) %></td>
-    <td><%= link_to 'Destroy', attachment, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', admin_property_attachment_url(@property, attachment) %></td>
+    <td><%= link_to 'Edit', edit_admin_property_attachment_url(@property, attachment) %></td>
+    <td><%= link_to 'Delete', url_for(:controller => 'admin/attachments', :action => :destroy, :id => attachment.id), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

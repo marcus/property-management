@@ -41,7 +41,7 @@
   <% end -%>
 
 <div style="clear:both;"></div>
-  <% if current_user.allowed_to? :view_event_details, @property %>
+  <% if current_user.allowed_to? :view_events, @property %>
     <div id="property_events" class="bordered_section">
       <h2 class="property_header">Occupancy Events</h2>
 

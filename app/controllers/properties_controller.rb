@@ -1,10 +1,9 @@
 class PropertiesController < ApplicationController
   # index show new edit create udpate destroy
-  before_filter :find_property, :except => ['index']
+  before_filter :find_property, :except => [:index]
   
   def index
-    # Active properties (TODO give the model scope)
-    @properties = current_company.properties.find(:all, :include => ['property_photos'])
+    @properties = current_company.properties.find(:all)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @properties }

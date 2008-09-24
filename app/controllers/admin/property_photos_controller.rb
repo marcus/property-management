@@ -1,4 +1,5 @@
 class Admin::PropertyPhotosController < ApplicationController
+  before_filter :authorize
   before_filter :find_property_photo
   layout 'admin/layouts/layout'
 

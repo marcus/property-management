@@ -37,7 +37,15 @@ class User < ActiveRecord::Base
   # ROLES
   def role_for_context(context)
     return nil unless context
-    # Find property/biz membership
+    
+    # Special logic for property owners - they have all roles on properties. TODO - make roles hierarichal
+    if context.class == Property
+      if (self.role_for_context(context.company).name == "company_principal")
+        return Role.find_by_name("property_owner")
+      end
+    end
+
+    # "Normal" processing that is not application specific. Find property/biz membership
     membership = memberships.detect {|m| m.context_id == context.id  && m.context_type == context.class.to_s }
     if membership
       membership.role

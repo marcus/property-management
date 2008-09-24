@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :check_permissions, :except => [:show]
+  before_filter :authorize, :except => [ :show ]
   
   def index
     @pages = Page.find(:all)
@@ -78,10 +78,4 @@ class PagesController < ApplicationController
   end
   
   private
-  
-  def check_permissions
-    if !can? :manage_company
-      redirect_to "/"
-    end
-  end
 end

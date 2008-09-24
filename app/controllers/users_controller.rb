@@ -1,5 +1,7 @@
+require 'color_generator'
+
 class UsersController < ApplicationController
-  require 'color_generator'
+  before_filter :authorize
   
   def new
   end

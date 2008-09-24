@@ -1,4 +1,4 @@
-# Later: TODO add a property limit ot companies and give company principles add property
+# Later: TODO add a property count limit to companies and give company principles add property
 # rights limited to the total.
 
 # Roles for properties

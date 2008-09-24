@@ -1,5 +1,6 @@
 class Admin::AttachmentsController < ApplicationController
   layout 'admin/layouts/layout'
+  before_filter :authorize
   before_filter :find_property_attachment
   
   def index

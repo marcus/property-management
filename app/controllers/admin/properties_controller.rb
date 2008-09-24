@@ -1,7 +1,7 @@
 class Admin::PropertiesController < ApplicationController
   # index show new edit create udpate destroy
-  before_filter :get_property, :only => [:update, :destroy ]
   before_filter :authorize
+  before_filter :get_property, :only => [:update, :destroy ]
   layout 'admin/layouts/layout'
 
   def index

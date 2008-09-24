@@ -1,6 +1,6 @@
 # index show new create edit update destroy
 class Admin::CompaniesController < ApplicationController
-  
+  before_filter :authorize
   before_filter :get_current_company#, :except => [:create]
   layout 'admin/layouts/layout'
   

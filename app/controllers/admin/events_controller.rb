@@ -1,6 +1,8 @@
 class Admin::EventsController < ApplicationController
   layout 'admin/layouts/layout'
+  before_filter :authorize
   before_filter :find_property_event
+  
   def index
     if @property
       # Events for list 

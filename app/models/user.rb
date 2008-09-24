@@ -40,8 +40,9 @@ class User < ActiveRecord::Base
     
     # Special logic for property owners - they have all roles on properties. TODO - make roles hierarichal
     if context.class == Property
-      if (self.role_for_context(context.company).name == "company_principal")
-        return Role.find_by_name("property_owner")
+      property_role = self.role_for_context(context.company)
+      if property_role
+        return Role.find_by_name("property_owner") if (property_role.name == "company_principal")
       end
     end
 

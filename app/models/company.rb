@@ -2,8 +2,8 @@ class Company < ActiveRecord::Base
   named_scope :active, :conditions => {:active => true}
   named_scope :inactive, :conditions => {:active => false}
   
-  has_many :properties
-  has_many :pages
+  has_many :properties, :dependent => :destroy
+  has_many :pages, :dependent => :destroy
   has_many :members, :through => :memberships, :source => :user
 
   has_attached_file :logo, 

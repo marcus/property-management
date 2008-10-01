@@ -31,7 +31,7 @@
             <% if can?(:view_admin) %>
                <%= link_to 'Admin', '/admin/properties' %> | 
             <% end %>
-            <%= link_to 'Logout', '/logout' %>
+            <%= link_to "Logout #{current_user.name}", '/logout' %>
          <% end %>
       </div>
       <p style="color: green"><%= flash[:notice] %></p>

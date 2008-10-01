@@ -24,14 +24,3 @@ class Membership < ActiveRecord::Base
     end
   end
 end
-
-
-
-#Membership.seed(:user_id, :context_id, :role_id, :context_type) do |s|
-#  u = User.find_by_login('carl')
-#  c = Company.first
-#  s.user_id = u.id
-#  s.context_id = c.id
-#  s.role_id = Role.find_by_name('company_principal').id
-#  s.context_type = c.class.to_s
-#end

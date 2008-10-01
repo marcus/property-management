@@ -16,7 +16,8 @@ module ApplicationHelper
         if e.starts_at == d || ( e.starts_at.to_date <= d && e.ends_at.to_date >= d ) 
           cell_attrs[:class] = 'specialDay'
           cell_attrs[:style] = "border-top:3px solid ##{e.owner.color};"
-          cell_text = link_to(d.day, events_url(:day => d))
+          #cell_text = link_to(d.day, events_url(:day => d))
+          cell_text = d.day
         end
       end
       [cell_text, cell_attrs]

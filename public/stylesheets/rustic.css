@@ -4,6 +4,7 @@
 	http://property.dev/stylesheets/rustic.css?1220073242
 	http://property.dev/stylesheets/rustic.css?1220111429
 	http://property.dev/stylesheets/rustic.css?1220112351
+	http://property.dev/stylesheets/rustic.css?1222616058
 */
 
 body {
@@ -351,5 +352,13 @@ h3 {
   margin-right: auto;
   xborder: 4px solid;
   padding: 10px;
-
+}
+.legend {
+  display:inline;
+  width: 15px;
+  height: 15px;
+  border-width: 1px;
+  border-style: solid;
+  float: left;
+  margin-right: 4px;
 }

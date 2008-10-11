@@ -26,11 +26,16 @@ class Admin::EventsController < ApplicationController
 
   def update_calendar
     @events = @property.events.in_range(Event.month_boundaries(Date.today + params[:new_month].to_i.months))
-    
-    render( :update ){|page| 
-      page.replace_html "calendar_display", :partial => "/events/calendar", :locals => { :month => params[:new_month].to_i, :events => @events }
-      page.replace_html "events_list", :partial => "/events/list", :locals => { :events_list => @events }
-    }
+    logger.debug { "WHAT THE FRICK" }
+    respond_to do |format|
+      format.js{
+            logger.debug { "WHAT THE FRICK2" }
+        render( :update ){|page| 
+          page.replace_html "calendar_display", :partial => "/events/calendar", :locals => { :month => params[:new_month].to_i, :events => @events }
+          page.replace_html "event_list", :partial => "/events/list", :locals => { :events_list => @events }
+        }
+      }
+    end
   end
 
   def show

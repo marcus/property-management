@@ -24,6 +24,7 @@
   <br style="clear:both;">
   
 </div>
+<br style="clear:both"/>
 
 <% for p in @property.property_photos.secondary %>
   <div class="secondary_property_image">
@@ -36,6 +37,7 @@
     </div>
   </div>
 <% end %>
+<br style="clear:both"/>
 
 <% if current_user.allowed_to? :view_events, @property %>
   <div id="property_events" class="bordered_section">
@@ -45,11 +47,11 @@
       <%= render :partial => 'events/calendar' %>
     </div>
 
-    <div id="events_list">
+    <div id="event_list">
       <%= render :partial => "/events/list", :locals => {:events_list => @events_list, :property => @property} %>
     </div>
   </div>
-  <div style="clear:both;"></div>
+  <br style="clear:both;" />
 <% end %>
 
 <% if current_user.allowed_to? :view_attachments, @property %>

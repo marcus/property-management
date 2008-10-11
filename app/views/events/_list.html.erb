@@ -1,13 +1,27 @@
 <% if events_list.length > 0 %>
-  <% for event in events_list %>
-    <h3 style="display:inline"><%= link_to event.name, admin_property_event_path(@property, event) %> </h3>Admin: <%= event.owner.name %>
-    <p><%= event.starts_at %>
-    <% if (event.ends_at.month != event.starts_at.month) || (event.ends_at.day != event.starts_at.day) %>
-      to <%= event.ends_at %>
-    </p>
+  <ul>
+    <% for event in events_list %>
+      <li>
+        
+        <div class="event_list_date">
+          <%= event.starts_at %>
+          <% if (event.ends_at.month != event.starts_at.month) && (event.ends_at.day != event.starts_at.day) %>
+            - <%= event.ends_at %>
+          <% end %>
+        </div>
+        
+        <div class="event_list_title">
+          <%= link_to event.name, admin_property_event_path(@property, event) %>
+        </div>
+        
+        <div class="event_list_owner">
+          Scheduled by <%= event.owner.name %>
+        </div>
+        
+      </li>
     <% end %>
-  <% end %>
-
+  </ul>
+  
 <% else %>
   No events have been created for this time period. 
     <%= link_to 'Create a new occupancy', new_admin_property_event_path(@property) %>

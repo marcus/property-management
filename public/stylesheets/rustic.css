@@ -1,15 +1,5 @@
 /* @override 
-	http://property.dev/stylesheets/rustic.css?1212874332
-	http://property.dev/stylesheets/rustic.css?1219534184
-	http://property.dev/stylesheets/rustic.css?1220073242
-	http://property.dev/stylesheets/rustic.css?1220111429
-	http://property.dev/stylesheets/rustic.css?1220112351
-	http://property.dev/stylesheets/rustic.css?1222616058
-	http://property.dev/stylesheets/rustic.css?1222832184
-	http://property.dev/stylesheets/rustic.css?1223611444
-	http://property.dev/stylesheets/rustic.css?1223693931
-	http://property.dev/stylesheets/rustic.css?1223738420
-	http://property.dev/stylesheets/rustic.css?1223739645
+	http://property.dev/stylesheets/rustic.css?1223744096
 */
 
 body {
@@ -56,20 +46,21 @@ h1 {
 }
 
 h2 {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
   color: #2d2920;
 }
 
 h2.property_header {
   margin-top: 0;
   padding-top: 10px;
-  margin-left: 5px;
+  margin-left: 8px;
   color: #fff;
-  font: normal normal 21px Verdana, "Lucida Grande", Lucida, sans-serif;
+  font: normal normal 21px "Lucida Grande", Lucida, Verdana, sans-serif;
 }
 
 h3.property_header {
-  
+  margin-left: 8px;
+  font: normal normal 21px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
 .fieldWithErrors {
@@ -222,7 +213,7 @@ h3.property_header {
 }
 
 #property_desc p {
-  padding-left: 10px;
+  padding-left: 8px;
 }
 #property_primary {
   background-color: #bebea9;
@@ -273,7 +264,8 @@ h3.property_header {
 }
 
 #calendar_block {
-  clear: left;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 #calendar_block .calendars {

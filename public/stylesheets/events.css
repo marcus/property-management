@@ -1,11 +1,13 @@
 /* @override 
-	http://property.dev/stylesheets/events.css?1219379227
-	http://property.dev/stylesheets/events.css?1220111519
+	http://property.dev/stylesheets/events.css?1223744959
+	http://property.dev/stylesheets/events.css?1223746418
 */
 
-#events_list {
-  float: right;
-  width: 500px;
+#event_list {
+  float: left;
+  height: 280px;
+  width: 400px;
+  overflow: auto;
 }
 #calendar_display {
   float: left;
@@ -73,7 +75,22 @@
   font-size: 95%;
 }
 .monthName {
-  padding-top: 12px;
   font-size: 115%;
-  font-weight: bold;
+  font-weight: normal;
+  font-style: normal;
+}
+#event_list li {
+  display: inline;
+  list-style-type: none;
+}
+.event_list_title {
+  font-style: italic;
+}
+.event_list_date {
+  font-size: 14px;
+}
+.event_list_owner {
+  margin-bottom: 8px;
+  font-size: 11px;
+  color: #656565;
 }

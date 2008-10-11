@@ -12,7 +12,7 @@ AccessControl.map do |map|
   # Company scope
   map.permission :manage_properties,    { "admin/properties"        => [ :index, :show, :edit, :update         ] }
   map.permission :admin_properties,     { "admin/properties"        => [ :new, :create, :destroy, :deactivate  ] }
-  map.permission :manage_company,       { "admin/companies"           => [ :show, :edit, :update                 ] ,
+  map.permission :manage_company,       { "admin/companies"         => [ :show, :edit, :update                 ] ,
                                           :pages                    => [ :index, :new, :edit, :create, :update ] ,
                                           :account                  => [ :edit                                 ] }
   map.permission :view_admin,           { "admin/properties"        => [ :index                                ] }
@@ -21,7 +21,7 @@ AccessControl.map do |map|
   map.permission :edit_property,        { "admin/properties"        => [ :show, :update, :edit                 ] }
   map.permission :manage_attachments,   { "admin/attachments"       => default_admin                             }
   map.permission :manage_photos,        { "admin/property_photos"   => default_admin                             }
-  map.permission :manage_events,        { "admin/events"            => default_admin                             }
+  map.permission :manage_events,        { "admin/events"            => (default_admin << :update_calendar )      }
                                                                                                                
   # Property scope - user                                                                                      
   map.permission :view_attachments,     { :attachments              => [ :show                                 ] }

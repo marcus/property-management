@@ -65,6 +65,6 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector
 end
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
-  :default => '%b %d, %Y'
+  :default => '%b %e, %Y'
 )
 require 'property_management'

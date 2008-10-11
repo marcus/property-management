@@ -5,18 +5,14 @@
     <%= render :partial => 'events/calendar' %>
   </div>
 
-  <div id="events_list">
+  <div id="event_list">
     <% if !@property.members.blank? %>
       <h2>Legend:</h2>
       <% for member in (@events.map { |e| e.owner }).uniq %>
         <div class="legend" style="background-color:#<%= member.color %>;"></div>
         <%= member.name %><br />
       <% end %>
-    <% else %>
-
     <% end %>
-
-
 
     <%= render :partial => "/events/list", :locals => {:events_list => @events_list, :property => @property} %>
   </div>

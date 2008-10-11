@@ -41,7 +41,6 @@ class Admin::EventsController < ApplicationController
   end
 
   def new
-    all_properties
     @event = Event.new
     respond_to do |format|
       format.html # new.html.erb
@@ -50,7 +49,6 @@ class Admin::EventsController < ApplicationController
   end
 
   def edit
-    all_properties
   end
 
   def create
@@ -95,9 +93,5 @@ class Admin::EventsController < ApplicationController
   def find_property_event
     @event = Event.find(params[:id]) if params[:id]
     @property = Property.find(params[:property_id]) if params[:property_id]
-  end
-  
-  def all_properties
-    @properties = Property.find(:all)
   end
 end

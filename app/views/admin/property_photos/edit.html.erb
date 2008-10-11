@@ -1,0 +1,23 @@
+<% form_for @property_photo, :url => { :controller => "admin/property_photos", :action => "update" } do |pp| %>
+  <%= pp.error_messages %>
+
+  <p>
+    <%= pp.label :name %><br />
+    <%= pp.text_field :name %>
+  </p>
+  <p>
+    <%= pp.label :description, 'Description (optional)' %><br />
+    <%= pp.text_area :description, :rows => 2 %>
+  </p>
+  
+  <p>
+    <%= pp.label :featured %><br />
+    Yes: <%= radio_button_tag :featured, true %><br />
+    No: <%= radio_button_tag :featured, false, :checked => true %>
+  </p>
+  <p>
+    <%= pp.submit "Save" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', attachments_path %>

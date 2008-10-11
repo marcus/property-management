@@ -2,26 +2,39 @@
 <%= stylesheet_link_tag 'lightbox' %>
 <%= stylesheet_link_tag 'events' %>
 
-<h2 class="property_header"><%=h @property.name %></h2>
+<div id="property_primary">
 
-<div id="property_desc">
-   <p><%= h @property.description %></p>
-</div>
+  <div id="property_desc">
+    <h2 class="property_header">  <%=h @property.name %></h2>
+     <p><%= h @property.description %></p>
+  </div>
 
-<div id="property_images" class="bordered_section">
-  <% if !@property.property_photos.blank? %>
-    <ul class="property_image">
-      <% for p in @property.property_photos %>
-      <li>
-           <%= lightbox_image_tag(p.photo.url(:small), p.photo.url(:large), "album name",
-                                                          {:class=>"images"}, :title => p.description) %>
-           <br />
-           <p class="property_image_name"><%= p.name %></p>
-     </li>
+  <div id="property_images" class="bordered_section">
+    <% if !@property.property_photos.blank? %>
+      <ul class="property_image">
+        <% for p in @property.property_photos.first_two %>
+        <li>
+             <%= lightbox_image_tag(p.photo.url(:medium), p.photo.url(:large), "album name",
+                                                {:class=>"images"}, :title => p.description) %>
+        </li>
+      <% end %>
+      </ul>
     <% end %>
-    </ul>
-  <% end %>
+  </div>
+  <br style="clear:both;">
+  
 </div>
+
+<ul class="property_image">
+  <% for p in @property.property_photos.secondary %>
+    <li>
+      <%= lightbox_image_tag(p.photo.url(:small), p.photo.url(:large), "album name",
+                                         {:class=>"images"}, :title => p.description) %>
+      <br />
+      <p class="property_image_name"><%= p.name %></p>
+    </li>
+  <% end %>
+</ul>
 
   <% if current_user.allowed_to? :view_attachments, @property %>
     <div id="property_attachments" class="bordered_section">

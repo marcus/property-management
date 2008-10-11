@@ -5,7 +5,7 @@
 <% if !@property_photos.blank? %>
   <% for pp in @property_photos %>
     <div class="admin_property_photo" style="float:left;padding:5px">
-      <%= link_to (image_tag pp.photo.url(:small), :class=>"images", :title => pp.description), url_for(:action => :show, :id => pp.id) %><br />
+      <%= link_to (image_tag pp.photo.url(:small), :class=>"images", :title => pp.description), url_for(:action => :edit, :id => pp.id) %><br />
       <%= link_to 'Delete', url_for(:action => :destroy, :id => pp.id), :confirm => 'Are you sure?', :id => pp.id, :method => :delete %>    
     </div>
   <% end %>

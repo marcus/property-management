@@ -12,7 +12,7 @@ AccessControl.map do |map|
   # Company scope
   map.permission :manage_properties,    { "admin/properties"        => [ :index, :show, :edit, :update         ] }
   map.permission :admin_properties,     { "admin/properties"        => [ :new, :create, :destroy, :deactivate  ] }
-  map.permission :manage_company,       { "admin/company"           => [ :show, :edit, :update                 ] ,
+  map.permission :manage_company,       { "admin/companies"           => [ :show, :edit, :update                 ] ,
                                           :pages                    => [ :index, :new, :edit, :create, :update ] ,
                                           :account                  => [ :edit                                 ] }
   map.permission :view_admin,           { "admin/properties"        => [ :index                                ] }

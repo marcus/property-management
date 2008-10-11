@@ -5,6 +5,8 @@
 	http://property.dev/stylesheets/rustic.css?1220111429
 	http://property.dev/stylesheets/rustic.css?1220112351
 	http://property.dev/stylesheets/rustic.css?1222616058
+	http://property.dev/stylesheets/rustic.css?1222832184
+	http://property.dev/stylesheets/rustic.css?1223611444
 */
 
 body {
@@ -59,6 +61,8 @@ h2.property_header {
   margin-top: 0;
   padding-top: 10px;
   margin-left: 5px;
+  color: #fff;
+  font: normal normal 21px Verdana, "Lucida Grande", Lucida, sans-serif;
 }
 
 h3 {
@@ -204,20 +208,24 @@ h3 {
 
 #property_images {
   float: left;
-  width: 475px;
+  width: 650px;
 }
 #property_attachments {
   clear: both;
 }
 #property_desc {
   float: left;
-  width: 476px;
+  width: 310px;
 }
 
 #property_desc p {
   padding-left: 10px;
 }
-
+#property_primary {
+  background-color: #bebea9;
+  border-bottom: 5px solid #86867e;
+  margin-bottom: 14px;
+}
 .property_image {
   list-style-type: none;
   padding: 0;
@@ -230,7 +238,8 @@ h3 {
 }
 
 .property_image img {
-  margin: 6px;
+  margin: 8px;
+  border: 2px solid #fff;
 }
 
 .property_image_name {

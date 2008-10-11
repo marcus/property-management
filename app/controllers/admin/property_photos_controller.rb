@@ -11,6 +11,21 @@ class Admin::PropertyPhotosController < ApplicationController
     @property_photo = PropertyPhoto.new
   end
   
+  def edit
+  end
+  
+  def update
+    respond_to do |format|
+      if @property_photo.update_attributes(params[:property_photo])
+        flash[:notice] = "Photo was updated successfully"
+        format.html { render :action => 'index'}
+      else
+        flash[:notice] = "There was an error updating this photo"
+        format.html { redirect_to url_for :controller => 'properties', :action => 'show', :id => @property.id }
+      end
+    end
+  end
+  
   def create
     @property_photo = PropertyPhoto.new(params[:property_photo])
     @property_photo.property_id = params[:property_id]

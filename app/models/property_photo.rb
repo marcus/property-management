@@ -8,5 +8,7 @@ class PropertyPhoto < ActiveRecord::Base
                     :url => "/photos/:id/:style/:basename.:extension"#, 
                     #:default_url => "/:class/:photos/missing_:style.png",
   named_scope :featured, :conditions => {:featured => true}
+  named_scope :first_two, :limit => 2
+  named_scope :secondary, lambda{ |offset| { :offset => offset || 2 }  }
   acts_as_list :scope => :property
 end

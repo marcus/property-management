@@ -8,6 +8,8 @@
 	http://property.dev/stylesheets/rustic.css?1222832184
 	http://property.dev/stylesheets/rustic.css?1223611444
 	http://property.dev/stylesheets/rustic.css?1223693931
+	http://property.dev/stylesheets/rustic.css?1223738420
+	http://property.dev/stylesheets/rustic.css?1223739645
 */
 
 body {
@@ -66,7 +68,7 @@ h2.property_header {
   font: normal normal 21px Verdana, "Lucida Grande", Lucida, sans-serif;
 }
 
-h3 {
+h3.property_header {
   
 }
 
@@ -244,12 +246,27 @@ h3 {
 }
 
 .secondary_property_image {
+  float: left;
   width: 234px;
+  text-align: center;
+  padding: 3px;
 }
 .secondary_property_image img {
   margin-bottom: 0;
   border: 1px solid #7c7c7c;
+  margin-top: 0;
 }
+.property_image_text {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+.secondary_property_image p {
+  padding: 0px;
+  margin: 0px;
+  font-size: 11px;
+  color: #6a6a6a;
+}
+
 .property_image_name {
   text-align: center;
   margin-top: 1px;

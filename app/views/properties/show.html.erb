@@ -25,49 +25,47 @@
   
 </div>
 
-<ul class="property_image">
-  <% for p in @property.property_photos.secondary %>
-    <li class="secondary_property_image">
-      <%= lightbox_image_tag(p.photo.url(:small), p.photo.url(:large), "album name",
-                                         {:class=>"images"}, :title => p.description) %>
-      <br />
-      <p class="property_image_name">
-        <%= p.name %><br />
-        <%= p.description %>
-      </p>
-    </li>
-  <% end %>
-</ul>
+<% for p in @property.property_photos.secondary %>
+  <div class="secondary_property_image">
+    <%= lightbox_image_tag(p.photo.url(:small), p.photo.url(:large), "album name",
+                                       {:class=>"images"}, :title => p.description) %>
+    <br />
+    <div class="property_image_text">
+      <p class="property_image_name"><%= p.name %></p>
+      <!-- <p class="property_image_description"><%= p.description %></p> -->
+    </div>
+  </div>
+<% end %>
 
-  <% if current_user.allowed_to? :view_attachments, @property %>
-    <div id="property_attachments" class="bordered_section">
-      <h2 class="property_header">Attachments</h2>
-    
-      <% if !@property.attachments.blank? %>
-        <% for a in @property.attachments %>
-          <p>
-            <%= a.name %>
-          </p>
-        <% end %>
-      <% else %>
-        <p>There are no attachments for this property.</p>
+<% if current_user.allowed_to? :view_events, @property %>
+  <div id="property_events" class="bordered_section">
+    <h3 class="property_header">Occupancies</h3>
+
+    <div id="calendar_display">
+      <%= render :partial => 'events/calendar' %>
+    </div>
+
+    <div id="events_list">
+      <%= render :partial => "/events/list", :locals => {:events_list => @events_list, :property => @property} %>
+    </div>
+  </div>
+  <div style="clear:both;"></div>
+<% end %>
+
+<% if current_user.allowed_to? :view_attachments, @property %>
+  <div id="property_attachments" class="bordered_section">
+    <h3 class="property_header">Attachments</h3>
+  
+    <% if !@property.attachments.blank? %>
+      <% for a in @property.attachments %>
+        <p>
+          <%= a.name %>
+        </p>
       <% end %>
-    </div>
-    
-  <% end -%>
-
-<div style="clear:both;"></div>
-  <% if current_user.allowed_to? :view_events, @property %>
-    <div id="property_events" class="bordered_section">
-      <h2 class="property_header">Occupancy Events</h2>
-
-      <div id="calendar_display">
-        <%= render :partial => 'events/calendar' %>
-      </div>
-
-      <div id="events_list">
-        <%= render :partial => "/events/list", :locals => {:events_list => @events_list, :property => @property} %>
-      </div>
-    </div>
-    <div style="clear:both;"></div>
-  <% end %>
+    <% else %>
+      <p>There are no attachments for this property.</p>
+    <% end %>
+  </div>
+  
+<% end -%>
+  

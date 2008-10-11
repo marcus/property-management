@@ -14,7 +14,7 @@
       <ul class="property_image">
         <% for p in @property.property_photos.first_two %>
         <li>
-             <%= lightbox_image_tag(p.photo.url(:medium), p.photo.url(:large), "album name",
+             <%= lightbox_image_tag(p.photo.url(:medium), p.photo.url(:large), "#{@property.name}",
                                                 {:class=>"images"}, :title => p.description) %>
         </li>
       <% end %>
@@ -27,11 +27,14 @@
 
 <ul class="property_image">
   <% for p in @property.property_photos.secondary %>
-    <li>
+    <li class="secondary_property_image">
       <%= lightbox_image_tag(p.photo.url(:small), p.photo.url(:large), "album name",
                                          {:class=>"images"}, :title => p.description) %>
       <br />
-      <p class="property_image_name"><%= p.name %></p>
+      <p class="property_image_name">
+        <%= p.name %><br />
+        <%= p.description %>
+      </p>
     </li>
   <% end %>
 </ul>

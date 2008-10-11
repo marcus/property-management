@@ -5,10 +5,6 @@
   <div class="admin_content">
     <% if !@property.blank? %>
       <h2><%= @property.name %></h2>
-      <% if @property.property_photos.featured[0] %>
-        <%= image_tag @property.property_photos.featured[0].photo.url(:thumbnail), :style => 'float:right;' %>
-      <% end %>
-      
     <% end %>
     <%= yield %>
 

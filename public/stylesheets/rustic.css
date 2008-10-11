@@ -7,6 +7,7 @@
 	http://property.dev/stylesheets/rustic.css?1222616058
 	http://property.dev/stylesheets/rustic.css?1222832184
 	http://property.dev/stylesheets/rustic.css?1223611444
+	http://property.dev/stylesheets/rustic.css?1223693931
 */
 
 body {
@@ -242,6 +243,13 @@ h3 {
   border: 2px solid #fff;
 }
 
+.secondary_property_image {
+  width: 234px;
+}
+.secondary_property_image img {
+  margin-bottom: 0;
+  border: 1px solid #7c7c7c;
+}
 .property_image_name {
   text-align: center;
   margin-top: 1px;

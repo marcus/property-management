@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :memberships, :include => [ :context, :role ]
   has_many :properties, :through => :memberships
   has_many :companies, :through => :memberships
+  has_many :events, :foreign_key => :owner_id, :dependent => :destroy
   has_many_polymorphs :contexts, :from => [:properties, :companies], :through => :memberships
   
   # Virtual attribute for the unencrypted password

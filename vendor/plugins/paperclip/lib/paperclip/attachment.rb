@@ -15,7 +15,7 @@ module Paperclip
       }
     end
 
-    attr_reader :name, :instance, :styles, :default_style
+    attr_reader :name, :instance, :styles, :default_style, :convert_options
 
     # Creates an Attachment object. +name+ is the name of the attachment, +instance+ is the
     # ActiveRecord object instance it's attached to, and +options+ is the same as the hash
@@ -34,6 +34,7 @@ module Paperclip
       @default_style     = options[:default_style]
       @storage           = options[:storage]
       @whiny_thumbnails  = options[:whiny_thumbnails]
+      @convert_options   = options[:convert_options] || {}
       @options           = options
       @queued_for_delete = []
       @queued_for_write  = {}
@@ -53,6 +54,12 @@ module Paperclip
     # In addition to form uploads, you can also assign another Paperclip attachment:
     #   new_user.avatar = old_user.avatar
     def assign uploaded_file
+      %w(file_name).each do |field|
+        unless @instance.class.column_names.include?("#{name}_#{field}")
+          raise PaperclipError.new("#{self} model does not have required column '#{name}_#{field}'")
+        end
+      end
+
       if uploaded_file.is_a?(Paperclip::Attachment)
         uploaded_file = uploaded_file.to_file(:original)
       end
@@ -76,6 +83,9 @@ module Paperclip
       @dirty = true
 
       post_process
+ 
+      # Reset the file size if the original file was reprocessed.
+      @instance[:"#{@name}_file_size"]    = uploaded_file.size.to_i
     ensure
       validate
     end
@@ -154,6 +164,7 @@ module Paperclip
     def self.interpolations
       @interpolations ||= {
         :rails_root   => lambda{|attachment,style| RAILS_ROOT },
+        :rails_env    => lambda{|attachment,style| RAILS_ENV },
         :class        => lambda do |attachment,style|
                            attachment.instance.class.name.underscore.pluralize
                          end,
@@ -231,6 +242,10 @@ module Paperclip
       self.extend(@storage_module)
     end
 
+    def extra_options_for(style) #:nodoc:
+      [ convert_options[style], convert_options[:all] ].compact.join(" ")
+    end
+
     def post_process #:nodoc:
       return if @queued_for_write[:original].nil?
       logger.info("[paperclip] Post-processing #{name}")
@@ -241,6 +256,7 @@ module Paperclip
           @queued_for_write[name] = Thumbnail.make(@queued_for_write[:original], 
                                                    dimensions,
                                                    format, 
+                                                   extra_options_for(name),
                                                    @whiny_thumnails)
         rescue PaperclipError => e
           @errors << e.message if @whiny_thumbnails

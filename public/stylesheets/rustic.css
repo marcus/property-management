@@ -1,5 +1,6 @@
 /* @override 
 	http://property.dev/stylesheets/rustic.css?1223744096
+	http://property.dev/stylesheets/rustic.css?1223746412
 */
 
 body {
@@ -60,6 +61,7 @@ h2.property_header {
 
 h3.property_header {
   margin-left: 8px;
+  margin-bottom: 5px;
   font: normal normal 21px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
@@ -218,7 +220,6 @@ h3.property_header {
 #property_primary {
   background-color: #bebea9;
   border-bottom: 5px solid #86867e;
-  margin-bottom: 14px;
 }
 .property_image {
   list-style-type: none;
@@ -387,4 +388,15 @@ h3.property_header {
   border-style: solid;
   float: left;
   margin-right: 4px;
+}
+.attachment {
+  margin: 8px;
+  margin: 8px;
+  border: 1px solid #d0d0d0;
+  padding: 3px;
+}
+.attachment_file_name {
+  font-style: italic;
+  font-size: 11px;
+  color: #616161;
 }

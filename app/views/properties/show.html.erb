@@ -50,6 +50,12 @@
     <div id="event_list">
       <%= render :partial => "/events/list", :locals => {:events_list => @events_list, :property => @property} %>
     </div>
+    
+    <div id="event_inquiry">
+      <h3>Make an Inquiry</h3>
+      <%= label :inquiry, "When would you like to stay?" %><br />
+      <%= text_area_tag :inquiry, :rows => 4 %>
+    </div>
   </div>
   <br style="clear:both;" />
 <% end %>
@@ -60,14 +66,17 @@
   
     <% if !@property.attachments.blank? %>
       <% for a in @property.attachments %>
-        <p>
-          <%= a.name %>
-        </p>
+        <div class="attachment">
+          <%= link_to image_tag(icon_for(a.attached.original_filename, :size => "small"), :style => "float:left"), a.attached.url %>
+          <%= link_to a.name, a.attached.url %> <span class="attachment_file_name">(<%= a.attached_file_name %>)</span>
+          <%= ": #{a.description}" if !a.description.blank? %>
+          <br style="clear:both;">
+        </div>
       <% end %>
     <% else %>
       <p>There are no attachments for this property.</p>
     <% end %>
   </div>
-  
+  <br style="clear:both;" />
 <% end -%>
   

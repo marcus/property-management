@@ -1,13 +1,16 @@
 /* @override 
 	http://property.dev/stylesheets/events.css?1223744959
 	http://property.dev/stylesheets/events.css?1223746418
+	http://property.dev/stylesheets/events.css?1223747204
 */
 
 #event_list {
   float: left;
   height: 280px;
-  width: 400px;
+  width: 300px;
   overflow: auto;
+  margin-right: 12px;
+  margin-left: 12px;
 }
 #calendar_display {
   float: left;
@@ -79,6 +82,10 @@
   font-weight: normal;
   font-style: normal;
 }
+#event_list ul {
+  padding-left: 8px;
+  margin-top: 2px;
+}
 #event_list li {
   display: inline;
   list-style-type: none;
@@ -93,4 +100,12 @@
   margin-bottom: 8px;
   font-size: 11px;
   color: #656565;
+}
+#event_inquiry {
+  float: left;
+  width: 300px;
+  margin-left: 10px;
+}
+#event_inquiry h3 {
+  margin-top: 2px;
 }

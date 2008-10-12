@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :property
-  belongs_to :owner, :class_name => "User", :foreign_key => :owner_id, :dependent => :destroy
+  belongs_to :owner, :class_name => "User", :foreign_key => :owner_id
   validates_presence_of :owner_id, :on => :create, :message => "Events must have an owner"
   validates_presence_of :property_id, :on => :create, :message => "Events must be associated with a property"
   named_scope :in_range, lambda { |range| 

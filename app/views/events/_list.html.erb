@@ -23,6 +23,6 @@
   </ul>
   
 <% else %>
-  No events have been created for this time period. 
-    <%= link_to 'Create a new occupancy', new_admin_property_event_path(@property) %>
+  <p>There are no occupancies for this time period. </p>
+  <p><%= link_to 'Create a new occupancy', new_admin_property_event_path(@property) %></p>
 <% end %>

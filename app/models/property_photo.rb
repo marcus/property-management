@@ -9,6 +9,7 @@ class PropertyPhoto < ActiveRecord::Base
                     #:default_url => "/:class/:photos/missing_:style.png",
   named_scope :featured, :conditions => {:featured => true}
   named_scope :first_two, :limit => 2
-  named_scope :secondary, lambda{ |offset| { :offset => offset || 2 }  }
+  named_scope :secondary, lambda{ |offset| { :limit => "#{offset || 2}, 10000" }  }
+  #SELECT * FROM property_photos WHERE (property_photos.property_id = 1) ORDER BY position limit 2,10000;
   acts_as_list :scope => :property
 end

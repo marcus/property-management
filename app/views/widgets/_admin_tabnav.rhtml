@@ -21,6 +21,11 @@ render_tabnav :admin, :generate_css => false do
     t.named 'Manage Company'
     t.links_to edit_admin_company_url(current_company)
   end if current_user.allowed_to? :manage_company, current_company
+
+  add_tab do |t| 
+    t.named 'Manage Users'
+    t.links_to admin_users_url
+  end if current_user.allowed_to? :manage_company, current_company
    
   if !@property.blank?
     

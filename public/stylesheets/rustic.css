@@ -1,6 +1,7 @@
 /* @override 
 	http://property.dev/stylesheets/rustic.css?1223744096
 	http://property.dev/stylesheets/rustic.css?1223746412
+	http://property.dev/stylesheets/rustic.css?1223784592
 */
 
 body {
@@ -50,7 +51,15 @@ h2 {
   font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
   color: #2d2920;
 }
-
+label {
+  font-weight: bold;
+}
+.flash {
+  font-size: 15px;
+  color: #0096b4;
+  position: relative;
+  display: block;
+}
 h2.property_header {
   margin-top: 0;
   padding-top: 10px;

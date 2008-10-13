@@ -2,16 +2,6 @@
    <%= f.error_messages %>
    
    <p>
-      Current Logo:
-      <%= image_tag current_company.logo.url %>
-   </p>
-   
-   <p>
-      Upload a new logo:
-      <%= f.file_field :logo %>
-   </p>
-   
-   <p>
       <%= f.label :name %><br />
       <%= f.text_field :name %>
    </p>
@@ -19,6 +9,16 @@
    <p>
       <%= f.label :description %><br />
       <%= f.text_area :description, :rows => 4 %>
+   </p>
+   
+   <p>
+      <label for="current_logo">Current Logo</label><br />
+      <%= image_tag current_company.logo.url %>
+   </p>
+   
+   <p>
+      <label for="company_logo">Upload a new logo (replaces previous logo)</label><br />
+      <%= f.file_field :logo %>
    </p>
    
    <p>

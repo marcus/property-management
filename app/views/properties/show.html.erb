@@ -51,11 +51,6 @@
       <%= render :partial => "/events/list", :locals => {:events_list => @events_list, :property => @property} %>
     </div>
     
-    <div id="event_inquiry">
-      <h3>Make an Inquiry</h3>
-      <%= label :inquiry, "When would you like to stay?" %><br />
-      <%= text_area_tag :inquiry, :rows => 4 %>
-    </div>
   </div>
   <br style="clear:both;" />
 <% end %>

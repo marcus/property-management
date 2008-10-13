@@ -25,6 +25,30 @@ User.seed(:login) do |s|
 end
 
 User.seed(:login) do |s|
+  s.login = "andy"
+  s.email = "andy@nwprops.com"
+  s.password = "andy"
+  s.password_confirmation = "andy"
+  s.status = 1
+  s.firstname = "Andy"
+  s.lastname = "Johnson"
+  s.color = random_color
+  s.admin = 0
+end
+
+User.seed(:login) do |s|
+  s.login = "eric"
+  s.email = "eric@nwprops.com"
+  s.password = "eric"
+  s.password_confirmation = "eric"
+  s.status = 1
+  s.firstname = "Eric"
+  s.lastname = "Johnson"
+  s.color = random_color
+  s.admin = 0
+end
+
+User.seed(:login) do |s|
   s.login = "marcus"
   s.email = "marcus@vorwaller.net"
   s.password = "marcusmarcus"

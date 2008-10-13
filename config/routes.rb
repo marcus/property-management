@@ -3,6 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
     admin.resources :companies
     admin.resources :properties, :has_many => [:events, :attachments, :property_photos]
+    admin.resources :users
   end
   
   map.resources :events, :member => { :update_calendar => :get}

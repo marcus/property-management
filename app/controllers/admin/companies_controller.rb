@@ -1,11 +1,11 @@
 # index show new create edit update destroy
 class Admin::CompaniesController < ApplicationController
-  before_filter :authorize
   before_filter :get_current_company#, :except => [:create]
+  before_filter :authorize
+  
   layout 'admin/layouts/layout'
   
   def index
-    
   end
   
   def show

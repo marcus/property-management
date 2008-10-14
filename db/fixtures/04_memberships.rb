@@ -23,12 +23,10 @@ end
 
 Membership.seed(:user_id, :context_id, :role_id, :context_type) do |s|
   u = User.find_by_login('andy')
-  #c = Company.first
-  c = Property.first
-  
+  c = Company.first
   s.user_id = u.id
   s.context_id = c.id
-  s.role_id = Role.find_by_name('property_owner').id
+  s.role_id = Role.find_by_name('company_principal').id
   s.context_type = c.class.to_s
 end
 
@@ -38,5 +36,25 @@ Membership.seed(:user_id, :context_id, :role_id, :context_type) do |s|
   s.user_id = u.id
   s.context_id = c.id
   s.role_id = Role.find_by_name('company_principal').id
+  s.context_type = c.class.to_s
+end
+
+############ Manager 1
+Membership.seed(:user_id, :context_id, :role_id, :context_type) do |s|
+  u = User.find_by_login('manager1')
+  c = Company.first
+  s.user_id = u.id
+  s.context_id = c.id
+  s.role_id = Role.find_by_name('company_partner').id
+  s.context_type = c.class.to_s
+end
+
+
+Membership.seed(:user_id, :context_id, :role_id, :context_type) do |s|
+  u = User.find_by_login('manager1')
+  c = Property.first
+  s.user_id = u.id
+  s.context_id = c.id
+  s.role_id = Role.find_by_name('property_manager').id
   s.context_type = c.class.to_s
 end

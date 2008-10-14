@@ -1,6 +1,7 @@
 class Admin::PropertyPhotosController < ApplicationController
-  before_filter :authorize
   before_filter :find_property_photo
+  before_filter :authorize
+
   layout 'admin/layouts/layout'
 
   def index

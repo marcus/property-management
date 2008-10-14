@@ -20,19 +20,23 @@ class Role < ActiveRecord::Base
   # - a permission Symbol (eg. :edit_property)
   def allowed_to?(action)
     if action.is_a? Hash
-      allowed_actions.include? "#{action[:controller]}/#{action[:action]}"
+      authorized = allowed_actions.include? "#{action[:controller]}/#{action[:action]}"
     else
-      allowed_permissions.include? action
+      authorized = allowed_permissions.include? action
     end
+    logger.debug "Authorizing: Granted: #{authorized}"
+    authorized
   end
 
 
 private
   def allowed_permissions
-    @allowed_permissions ||= permissions + AccessControl.permissions.collect {|p| p.name}
+    @allowed_permissions ||= permissions# + AccessControl.permissions.collect {|p| p.name}
   end
 
   def allowed_actions
-    @actions_allowed ||= allowed_permissions.inject([]) { |actions, permission| actions += AccessControl.allowed_actions(permission) }.flatten
+    @actions_allowed ||= allowed_permissions.inject([]) { 
+      |actions, permission| actions += AccessControl.allowed_actions(permission) 
+    }.flatten
   end
 end

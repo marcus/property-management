@@ -62,6 +62,8 @@ class User < ActiveRecord::Base
       return false unless context.active?
       role = role_for_context(context)
       return false unless role
+      
+      logger.debug { "Authorizing #{role.id} can #{action.to_yaml} for #{context.name} a #{context.class} \n" }
       role.allowed_to?(action)
       
     #elsif options[:global]

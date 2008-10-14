@@ -37,6 +37,12 @@ end
 # Company principal can do everything within the context of the company.
 Role.seed(:name) do |s|
   s.name = "company_principal"
-  s.permissions = [ :view_admin, :manage_properties, :manage_company ]
+  s.permissions = [ :view_admin, :manage_properties, :manage_company, :manage_users ]
+  s.context = "Company"
+end
+
+Role.seed(:name) do |s|
+  s.name = "company_partner"
+  s.permissions = [ :view_admin ]
   s.context = "Company"
 end

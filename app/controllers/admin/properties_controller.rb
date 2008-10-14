@@ -1,7 +1,7 @@
 class Admin::PropertiesController < ApplicationController
   # index show new edit create udpate destroy
+  before_filter :get_property
   before_filter :authorize
-  before_filter :get_property, :only => [:update, :destroy ]
   layout 'admin/layouts/layout'
 
   def index
@@ -64,7 +64,7 @@ class Admin::PropertiesController < ApplicationController
   private
   
   def get_property
-    @property = Property.find(params[:id])
+    @property = Property.find(params[:id]) if params[:id]
   end
 
 end

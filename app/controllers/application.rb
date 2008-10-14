@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     allowed = current_user.allowed_to?({:controller => control, :action => action}, current_company)
     unless allowed
       if !@property.blank?
-        current_user.allowed_to?({:controller => control, :action => action}, @property)
+        allowed = current_user.allowed_to?({:controller => control, :action => action}, @property)
       end
     end
     

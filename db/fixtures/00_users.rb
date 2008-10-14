@@ -59,3 +59,15 @@ User.seed(:login) do |s|
   s.color = random_color
   s.admin = 1
 end
+
+User.seed(:login) do |s|
+  s.login = "manager1"
+  s.email = "manager1@nwprops.com"
+  s.password = "manager1"
+  s.password_confirmation = "manager1"
+  s.status = 1
+  s.firstname = "Manager"
+  s.lastname = "One"
+  s.color = random_color
+  s.admin = 0
+end

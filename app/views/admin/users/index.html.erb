@@ -1,0 +1,19 @@
+<% if !@users.blank? %>
+  <% for user in @users %>
+    <strong><%= user.name %></strong> <%= user.role_for_context(current_company).name.gsub("_", " ").capitalize unless user.role_for_context(current_company).blank? %><br />
+    <ul>
+      <% if !user.properties.blank? %>
+        <% for property in user.properties %>
+          <li>
+            <%= property.name %> - <%= user.role_for_context(property).name.gsub("_", " ").capitalize %>
+          </li>
+        <% end %>
+      <% else %>
+        
+      <% end %>
+      
+    </ul>
+  <% end %>
+<% else %>
+  
+<% end %>

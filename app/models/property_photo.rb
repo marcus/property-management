@@ -12,4 +12,12 @@ class PropertyPhoto < ActiveRecord::Base
   named_scope :secondary, lambda{ |offset| { :limit => "#{offset || 2}, 10000" }  }
   #SELECT * FROM property_photos WHERE (property_photos.property_id = 1) ORDER BY position limit 2,10000;
   acts_as_list :scope => :property
+  
+  def description
+    if super.blank?
+      name
+    else
+      super
+    end
+  end
 end

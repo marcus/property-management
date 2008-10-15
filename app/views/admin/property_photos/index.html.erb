@@ -1,6 +1,6 @@
-<h2><%= link_to 'Upload a new photo', new_admin_property_property_photo_url %></h2>
+<h2><%= image_tag "add-16.gif" %> <%= link_to 'Upload a new photo', new_admin_property_property_photo_url %></h2>
 
-<h2>Existing photos</h2>
+<h3>Existing photos</h3>
 
 <% if !@property_photos.blank? %>
   <% for pp in @property_photos %>

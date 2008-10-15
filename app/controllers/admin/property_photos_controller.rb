@@ -35,7 +35,7 @@ class Admin::PropertyPhotosController < ApplicationController
       if @property_photo.save
         # TODO - only allow photos to be uploaded
         flash[:notice] = "You've successfully added a photo to this property"
-        format.html { render :action => "index" }
+        format.html { redirect_to admin_property_property_photos_url @property }
       else
         #format.html { render :action => "new" }
       end
@@ -46,7 +46,8 @@ class Admin::PropertyPhotosController < ApplicationController
     @property_photo.destroy
 
     respond_to do |format|
-      format.html { redirect_to url_for :controller => 'properties', :action => 'show', :id => @property.id }
+      flash[:notice] = "Photo was successfully deleted."
+      format.html { redirect_to admin_property_property_photos_url @property }
       format.xml  { head :ok }
     end
   end

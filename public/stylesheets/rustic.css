@@ -2,6 +2,8 @@
 	http://property.dev/stylesheets/rustic.css?1223744096
 	http://property.dev/stylesheets/rustic.css?1223746412
 	http://property.dev/stylesheets/rustic.css?1223784592
+	http://property.dev/stylesheets/rustic.css?1223918682
+	http://property.dev/stylesheets/rustic.css?1224121058
 */
 
 body {
@@ -66,6 +68,7 @@ h2.property_header {
   margin-left: 8px;
   color: #fff;
   font: normal normal 21px "Lucida Grande", Lucida, Verdana, sans-serif;
+  margin-bottom: 0;
 }
 
 h3.property_header {
@@ -408,4 +411,7 @@ h3.property_header {
   font-style: italic;
   font-size: 11px;
   color: #616161;
+}
+#page_content {
+  padding: 5px;
 }

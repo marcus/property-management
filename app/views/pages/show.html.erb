@@ -1,7 +1,9 @@
-<h2><%= @page.name %></h2>
+<div id="page_content">
+  <h2><%= @page.name %></h2>
 
-<p><%= simple_format @page.content %></p>
+  <p><%= simple_format @page.content %></p>
 
-<% if current_user.allowed_to?(:manage_company, current_company) %>
-  <%= link_to 'Edit', edit_page_path(@page) %>
-<% end %>
+  <% if current_user.allowed_to?(:manage_company, current_company) %>
+    <%= link_to 'Edit', edit_page_path(@page) %>
+  <% end %>
+</div>

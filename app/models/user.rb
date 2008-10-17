@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :password, :password_confirmation
+  attr_accessible :login, :email, :password, :password_confirmation, :firstname, :lastname, :color
   
   def self.anonymous_user
     User.find_by_login('anon')
@@ -32,7 +32,11 @@ class User < ActiveRecord::Base
   end
   
   def name
-    "#{firstname} #{lastname}"
+    if !firstname.blank? && !lastname.blank?
+      "#{firstname} #{lastname}"
+    else
+      login
+    end
   end
 
   # ROLES

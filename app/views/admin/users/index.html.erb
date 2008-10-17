@@ -1,6 +1,7 @@
 <% if !@users.blank? %>
   <% for user in @users %>
-    <strong><%= user.name %></strong> <%= user.role_for_context(current_company).name.gsub("_", " ").capitalize unless user.role_for_context(current_company).blank? %><br />
+    <strong><%= link_to user.name, edit_admin_user_url(user) %></strong>
+    <%= user.role_for_context(current_company).name.gsub("_", " ").capitalize unless user.role_for_context(current_company).blank? %><br />
     <ul>
       <% if !user.properties.blank? %>
         <% for property in user.properties %>

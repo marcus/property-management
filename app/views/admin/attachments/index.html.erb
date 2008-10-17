@@ -1,16 +1,16 @@
 <h1>Attachments</h1>
-
+<p><%= image_tag "add-16.gif" %> <%= link_to 'Upload a new attachment', new_admin_property_attachment_url %></p>
 <table>
   <tr>
+    <th></th>
     <th>Name</th>
-    <th>File name</th>
     <th>Description</th>
   </tr>
 
 <% for attachment in @attachments %>
   <tr>
-    <td><%=h attachment.name %></td>
-    <td><%=h attachment.attached_file_name %></td>
+    <td><%= image_tag icon_for(attachment.attached.original_filename, :size => "small") %></td>
+    <td><%=h attachment.name %> - <%=h attachment.attached_file_name %></td>
     <td><%=h attachment.description %></td>
     <td><%= link_to 'Show', admin_property_attachment_url(@property, attachment) %></td>
     <td><%= link_to 'Edit', edit_admin_property_attachment_url(@property, attachment) %></td>
@@ -20,5 +20,3 @@
 </table>
 
 <br />
-
-<%= link_to 'New attachment', new_admin_property_attachment_url %>

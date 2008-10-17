@@ -2,6 +2,7 @@ module Paperclip
   # The Attachment class manages the files for a given attachment. It saves when the model saves,
   # deletes when the model is destroyed, and processes the file upon assignment.
   class Attachment
+    @@content_types = ['image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png', 'image/jpg']
     
     def self.default_options
       @default_options ||= {
@@ -245,12 +246,22 @@ module Paperclip
     def extra_options_for(style) #:nodoc:
       [ convert_options[style], convert_options[:all] ].compact.join(" ")
     end
-
+    
+    def image?
+      self.class.image?(content_type)
+    end
+    
+    def thumbnailable?
+      image? && respond_to?(:parent_id) && parent_id.nil?
+    end
+    
+    
     def post_process #:nodoc:
       return if @queued_for_write[:original].nil?
       logger.info("[paperclip] Post-processing #{name}")
       @styles.each do |name, args|
         begin
+          thumbnailable? || raise(PaperclipError.new("Can not create thumbnails if the content type is not an image."))
           dimensions, format = args
           dimensions = dimensions.call(instance) if dimensions.respond_to? :call
           @queued_for_write[name] = Thumbnail.make(@queued_for_write[:original], 

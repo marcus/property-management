@@ -4,6 +4,11 @@ class UsersController < ApplicationController
   before_filter :authorize
   
   def new
+    # Can't create a new acct if you're already logged in
+    # Since we're authorizing, that means no new users can be created from here...
+    if !current_user.anonymous?
+      redirect_back_or_default('/')
+    end
   end
 
   def create

@@ -4,6 +4,7 @@
 	http://property.dev/stylesheets/rustic.css?1223784592
 	http://property.dev/stylesheets/rustic.css?1223918682
 	http://property.dev/stylesheets/rustic.css?1224121058
+	http://property.dev/stylesheets/rustic.css?1224213642
 */
 
 body {
@@ -179,6 +180,7 @@ h3.property_header {
 
 #body-content {
   background-color: #fff;
+  min-height: 200px;
 }
 
 #company-description {
@@ -413,5 +415,6 @@ h3.property_header {
   color: #616161;
 }
 #page_content {
+  min-height: 400px;
   padding: 5px;
 }

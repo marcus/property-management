@@ -42,7 +42,7 @@ class Admin::AttachmentsController < ApplicationController
     respond_to do |format|
       if @attachment.save
         flash[:notice] = "You've successfully added an attachment to this property"
-        format.html { redirect_to(admin_property_attachment_path(@property, @attachment)) }
+        format.html { redirect_to(admin_property_attachments_path(@property)) }
       else
         format.html { render :action => "new" }
       end

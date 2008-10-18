@@ -11,7 +11,7 @@ class Property < ActiveRecord::Base
   validates_presence_of :company_id, :name
   
   after_create :give_company_principals_property_owner_role
-  
+    
   def featured_image
     self.property_photos.find(:first)#, :conditions => "attached_content_type")
     #TODO - check to see if the first attachment is an image. If not, move the first image up in the list

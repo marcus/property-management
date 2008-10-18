@@ -8,7 +8,7 @@ class Admin::PropertiesController < ApplicationController
     if current_user.admin?
       @properties = current_company.properties
     else
-      @properties = current_user.properties
+      @properties = current_user.properties.active
     end
   end
 

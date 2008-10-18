@@ -6,6 +6,12 @@ class Role < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
   
+  named_scope :for_context, lambda { |context| {:conditions => {:context => context}} }
+  
+  def friendly_name
+    name.gsub("_", " ").split.map{|word|word.capitalize}.join(" ")
+  end
+  
   def permissions
     read_attribute(:permissions) || []
   end
@@ -27,8 +33,7 @@ class Role < ActiveRecord::Base
     logger.debug "Authorizing: Granted: #{authorized}"
     authorized
   end
-
-
+  
 private
   def allowed_permissions
     @allowed_permissions ||= permissions# + AccessControl.permissions.collect {|p| p.name}

@@ -7,10 +7,10 @@ class Admin::UsersController < ApplicationController
   end
   
   def edit
+    @properties = current_company.properties.active
   end
   
   def update
-    logger.debug { "USER + +++++ #{@user.id}" }
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'
@@ -36,12 +36,9 @@ class Admin::UsersController < ApplicationController
   end
   
   def verify_permissions
-    logger.debug { "ONE" }
     if !@user.blank? && !current_user.anonymous?
-      logger.debug { "TWO" }
       authorize unless @user.id == current_user.id
     else
-      logger.debug { "THREE" }
       authorize
     end
       

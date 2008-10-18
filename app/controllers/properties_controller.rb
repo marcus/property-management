@@ -3,7 +3,7 @@ class PropertiesController < ApplicationController
   before_filter :find_property, :except => [:index]
   
   def index
-    @properties = current_company.properties.find(:all)
+    @properties = current_company.properties.active
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @properties }

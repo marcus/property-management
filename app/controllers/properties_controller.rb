@@ -1,7 +1,4 @@
 class PropertiesController < ApplicationController
-  # index show new edit create udpate destroy
-  before_filter :find_property, :except => [:index]
-  
   def index
     @properties = current_company.properties.active
     respond_to do |format|
@@ -11,8 +8,8 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    #@property = Property.find(params[:id], :include => ['events', 'attachments'])
-
+    @property = current_company.properties.active.find( params[:id], 
+                :include => [:property_photos, :attachments] )
     # Events for list 
     if !params[:day]
       @events_list = @property.events.in_range(Event.month_boundaries(DateTime.now))
@@ -27,10 +24,5 @@ class PropertiesController < ApplicationController
       format.html # index.html.erb
     end
 
-  end
- 
-  private
-  def find_property
-    @property = current_company.properties.active.find(params[:id], :include => ['property_photos', 'attachments']) if params[:id]
   end
 end

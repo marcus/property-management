@@ -7,7 +7,6 @@ class Admin::UsersController < ApplicationController
   end
   
   def edit
-    @properties = current_company.properties.active
   end
   
   def update

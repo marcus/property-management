@@ -6,7 +6,8 @@ class Event < ActiveRecord::Base
   named_scope :in_range, lambda { |range| 
     start = range[0].to_date.to_time
     finish = range[1].to_date.to_time + 1.day - 1.second
-    { :conditions => ['(starts_at >= ? AND starts_at<= ?) OR (ends_at <= ? AND ends_at >= ?)', start, finish, finish, start]}
+    { :conditions => ['(starts_at >= ? AND starts_at<= ?) OR (ends_at <= ? AND ends_at >= ?)', start, finish, finish, start],
+      :include => :owner,  }
   }
   
   # Events that begin, end or span a given date, accepts Time or Date objects

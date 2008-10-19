@@ -1,4 +1,4 @@
-<h2>Editing account for <%= @user.name %></h2>
+<h2><%= @user.name %>'s Account</h2>
 
 <% form_for @user, :url => {:controller => '/admin/users', :action => 'update'} do |f| %>
   
@@ -41,18 +41,6 @@
     <%= submit_tag 'Save' %>
   </p>
 <% end %>
-
-<% if !@properties.blank? %>
-  <% for property in @properties %>
-    <h3><%= property.name %></h3>
-    <%= current_user.role_for_context(property).friendly_name %>
-    <%= select_options_tag :role, Role.for_context("Property").map{|r|" "+r.friendly_name} %>
-  <% end %>
-<% else %>
-  
-<% end %>
-
-
 
 <script type="text/javascript" charset="utf-8">
   new Control.ColorPicker("user_color", { IMAGE_BASE : "/images/colorpicker/", "swatch" : "cp" });

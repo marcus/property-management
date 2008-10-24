@@ -2,7 +2,12 @@ class Membership < ActiveRecord::Base
   belongs_to :user
   belongs_to :role
   belongs_to :context, :polymorphic => true
-    
+  
+  named_scope :for_user_for_property, lambda { |user, property| {
+     :conditions => ["user_id = ? AND context_id = ? AND context_type = ?", user.id, property.id, property.class.to_s],
+     :limit => 1
+  } }
+
   validates_presence_of :role, :user, :context
   
   after_save :add_company_managers_to_properties

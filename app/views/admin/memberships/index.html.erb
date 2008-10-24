@@ -1,0 +1,11 @@
+<% if !@property.members.blank? %>
+  <% for member in @property.members %>
+    <div id="<%= "member_#{member.id}" %>">
+      <%= render :partial => 'membership_form', :locals => {:property => @property, :member => member, :message => "" } %>
+    </div>
+    <br />
+  <% end %>
+  
+<% else %>
+ There are no memberships for this property.
+<% end %>

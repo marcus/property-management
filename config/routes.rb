@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :admin do |admin|
     admin.resources :companies
-    admin.resources :properties, :has_many => [:events, :attachments, :property_photos, :members]
+    admin.resources :properties, :has_many => [:events, :attachments, :property_photos, :memberships]
     admin.resources :users
   end
   

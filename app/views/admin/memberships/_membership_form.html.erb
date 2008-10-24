@@ -1,0 +1,18 @@
+<strong><%= member.name %></strong>
+<%= message %>
+
+<% membership = Membership.for_user_for_property(member, property).first  %>
+
+<% form_remote_for membership, 
+                   :url => { :controller => 'admin/memberships', :action => 'update' } do |f| %>
+  
+  <%= hidden_field_tag :id, membership.id %>
+  <%= f.hidden_field :user_id, :value => member.id %>
+  
+  <%= select_tag "membership[role_id]", 
+                  options_for_select( Role.for_context("Property").map{|r|[r.friendly_name, r.id]},
+                  member.role_for_context(property).id ), :id => "membership_role_id" %>
+                        
+  <%= f.submit "Save" %>
+  
+<% end %>

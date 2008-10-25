@@ -6,7 +6,7 @@
       <% if !user.properties.blank? %>
         <% for property in user.properties %>
           <li>
-            <%= property.name %> - <%= user.role_for_context(property).name.gsub("_", " ").capitalize %> -
+            <%= link_to property.name, admin_property_url(property) %> - <%= user.role_for_context(property).name.gsub("_", " ").capitalize %> -
             <% if current_user.allowed_to?(:manage_users, current_company) %>
               <%= link_to "Edit", admin_property_memberships_url(property) %>
             <% end %>

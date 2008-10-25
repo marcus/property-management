@@ -27,7 +27,14 @@ class Property < ActiveRecord::Base
     self.save!
   end
   
-  #private
+  def non_members
+    # Users in the company who have no role in the property
+    company.members.map { |user|
+     !self.members.include?(user) ? user :  nil
+    }.compact
+  end
+  
+  private
   
   def give_company_principals_property_owner_role
     property_owner_role_id =  Role.find_by_name('property_owner').id

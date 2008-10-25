@@ -1,6 +1,5 @@
 <strong><%= member.name %></strong>
 <%= message %>
-
 <% membership = Membership.for_user_for_property(member, property).first  %>
 
 <% form_remote_for membership, 
@@ -14,5 +13,9 @@
                   member.role_for_context(property).id ), :id => "membership_role_id" %>
                         
   <%= f.submit "Save" %>
-  
+  <% if membership.user_id != current_user.id %>
+    <%= link_to "Remove User", admin_property_membership_url(@property, membership), :confirm => 'Are you sure?', :method => :delete %>
+  <% else %>
+    <!-- You cannot remove yourself from a property -->
+  <% end %>
 <% end %>

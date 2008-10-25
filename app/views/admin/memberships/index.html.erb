@@ -9,3 +9,19 @@
 <% else %>
  There are no memberships for this property.
 <% end %>
+
+<h2>Add a member to this property</h2>
+
+<% if !@property.non_members.blank? %>
+  <% for user in @property.non_members %>
+    <% form_for Membership.new, :url => admin_property_memberships_path(@property) do |f| -%>
+      <p>Add <strong><%= user.name %></strong> as a
+        <%= f.select :role_id, Role.for_context("Property").map{|r|[r.friendly_name, r.id]} %>
+        <%= f.hidden_field :user_id, :value => user.id %>
+        <%= f.submit "Save" %>
+      </p>
+    <% end -%>
+  <% end %>
+<% end %>
+
+<p>If there's someone you'd like to add to the property who isn't a member of the company already, you can add them now.</p>

@@ -13,7 +13,7 @@ AccessControl.map do |map|
   map.permission :manage_properties,    { "admin/properties"        => [ :index, :show, :edit, :update         ] }
   map.permission :admin_properties,     { "admin/properties"        => [ :new, :create, :destroy, :deactivate  ] }
   map.permission :manage_users,         { "admin/users"             => default_admin                             ,
-                                          "admin/memberships"       => [ :index, :update]                        }
+                                          "admin/memberships"       => default_admin                             }
   map.permission :manage_company,       { "admin/companies"         => [ :show, :edit, :update                 ] ,
                                           :pages                    => default_admin                             ,
                                           :account                  => [ :edit                                 ] }

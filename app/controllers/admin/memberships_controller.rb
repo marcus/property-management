@@ -4,7 +4,23 @@ class Admin::MembershipsController < ApplicationController
   before_filter :authorize
   
   def index
-    @property = Property.find(params[:property_id])
+  end
+  
+  def create
+    @membership = Membership.new(params[:membership])
+    @membership.context_id = @property.id
+    @membership.context_type = @property.class.to_s
+    
+    respond_to do |format|
+      format.html {
+        if @membership.save
+          flash[:notice] = "Member added to property."
+        else
+          flash[:notice] = "There was a problem adding the member."
+        end
+      }
+      redirect_to admin_property_memberships_path(@property)
+    end
   end
   
   def update
@@ -26,9 +42,14 @@ class Admin::MembershipsController < ApplicationController
     end
   end
   
+  def destroy
+    @membership.destroy unless @membership.user_id == current_user.id
+    redirect_to admin_property_memberships_path(@property)
+  end
 
   private
   def find_membership
+    @property = Property.find(params[:property_id]) if params[:property_id]
     @membership = Membership.find(params[:id]) if params[:id]
   end
 end

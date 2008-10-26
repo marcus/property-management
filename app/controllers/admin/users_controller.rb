@@ -50,8 +50,7 @@ class Admin::UsersController < ApplicationController
   end
   
   def destroy
-    @user.status = false
-    @user.save
+    @user.destroy unless @user.id == current_user.id
     redirect_to admin_users_url
   end
 

@@ -1,6 +1,6 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
-  has_many :memberships, :include => [ :context, :role ]
+  has_many :memberships, :include => [ :context, :role ], :dependent => :destroy
   has_many :properties, :through => :memberships
   has_many :companies, :through => :memberships
   has_many :events, :foreign_key => :owner_id, :dependent => :destroy

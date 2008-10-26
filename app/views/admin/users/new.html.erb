@@ -1,0 +1,5 @@
+<% form_for @user, :url => {:controller => '/admin/users', :action => 'create'} do |f| %>
+  
+  <%= render :partial => 'form_fields', :locals => {:f => f} %>
+
+<% end %>

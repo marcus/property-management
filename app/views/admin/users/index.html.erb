@@ -1,23 +1,32 @@
+<p><%= image_tag 'add-16.gif'%>
+<%= link_to "Add a new user", new_admin_user_url %></p>
+
 <% if !@users.blank? %>
   <% for user in @users %>
     <strong><%= link_to user.name, edit_admin_user_url(user) %></strong>
-    <%= user.role_for_context(current_company).name.gsub("_", " ").capitalize unless user.role_for_context(current_company).blank? %><br />
+    <%= user.role_for_context(current_company).name.gsub("_", " ").capitalize unless user.role_for_context(current_company).blank? %>
+    <% unless user.id == current_user.id %>
+     - <%= link_to "Delete user", admin_user_url(user), :confirm => 'Are you sure?', :method => :delete %>
+    <% end %>
+     <br />
     <ul>
-      <% if !user.properties.blank? %>
-        <% for property in user.properties %>
-          <li>
-            <%= link_to property.name, admin_property_url(property) %> - <%= user.role_for_context(property).name.gsub("_", " ").capitalize %> -
-            <% if current_user.allowed_to?(:manage_users, current_company) %>
-              <%= link_to "Edit", admin_property_memberships_url(property) %>
-            <% end %>
+      <% for property in current_company.properties %>
+        <li>
+          <%= link_to property.name, admin_property_url(property) %>
+          
+          <% if !user.role_for_context(property).blank? %>
+             - <%= user.role_for_context(property).name.gsub("_", " ").capitalize %> -
+          <% else %>
+            No role
+          <% end %>
+          <%# TODO - edit role inline %>
+          <%= link_to "Edit role", admin_property_memberships_url(property) %>
           </li>
-        <% end %>
-      <% else %>
-        
       <% end %>
-      
     </ul>
   <% end %>
-<% else %>
+  
+  <p><%= image_tag 'add-16.gif'%>
+  <%= link_to "Add a new user", new_admin_user_url %></p>
   
 <% end %>

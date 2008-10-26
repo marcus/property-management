@@ -14,7 +14,7 @@
                         
   <%= f.submit "Save" %>
   <% if membership.user_id != current_user.id %>
-    <%= link_to "Remove User", admin_property_membership_url(@property, membership), :confirm => 'Are you sure?', :method => :delete %>
+    <%= link_to "Remove #{membership.user.name} from property", admin_property_membership_url(@property, membership), :confirm => 'Are you sure?', :method => :delete %>
   <% else %>
     <!-- You cannot remove yourself from a property -->
   <% end %>

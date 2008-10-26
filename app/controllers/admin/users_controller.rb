@@ -3,10 +3,30 @@ class Admin::UsersController < ApplicationController
   before_filter :find_user, :verify_permissions
 
   def index
-    @users = (current_company.properties.map{|p|p.members}).flatten.uniq
+    @users = current_company.members
   end
   
   def edit
+  end
+  
+  def new
+    @user = User.new
+  end
+  
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      # TODO error checking here... probably not the best way to handle this.
+      Membership.new(:user_id => @user.id, 
+               :context_id => current_company.id,
+               :context_type => current_company.class.to_s, 
+               :role_id => Role.find_by_name('company_partner').id).save
+               
+      flash[:notice] = "User was successfully created"
+      redirect_to admin_users_url
+    else
+      render :action => "new"
+    end
   end
   
   def update
@@ -27,6 +47,12 @@ class Admin::UsersController < ApplicationController
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  def destroy
+    @user.status = false
+    @user.save
+    redirect_to admin_users_url
   end
 
   private

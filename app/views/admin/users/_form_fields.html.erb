@@ -1,0 +1,43 @@
+<p>
+  <%= f.label :login, "Login" %>
+  <%= f.text_field :login %>
+</p>
+
+<p>
+  <%= f.label :email, "Email Address" %>
+  <%= f.text_field :email %>
+</p>
+
+<p>
+  <%= f.label :firstname, "First Name" %>
+  <%= f.text_field :firstname %>
+</p>
+
+<p>
+  <%= f.label :lastname, "Last Name" %>
+  <%= f.text_field :lastname %>
+</p>
+
+<p>
+  <%= f.label :color, "Color" %>    
+  <%= f.text_field :color, :value => @user.color, :size => 6 %>
+  <button style="width: 1.5em; height: 1.5em; border: 1px outset #666;" id="cp" class="colorbox"></button>
+</p>
+
+<p>
+  <%= f.label :password, "Password" %> 
+  <%= f.password_field :password %> <% if !@user.id.blank? %>Leave blank to keep the same<% end %>
+</p>
+
+<p>
+  <%= f.label :password_confirmation, "Verify Password" %>
+  <%= f.password_field :password_confirmation %>
+</p>
+
+<p>
+  <%= submit_tag 'Save' %>
+</p>
+
+<script type="text/javascript" charset="utf-8">
+  new Control.ColorPicker("user_color", { IMAGE_BASE : "/images/colorpicker/", "swatch" : "cp" });
+</script>

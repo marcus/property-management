@@ -5,6 +5,8 @@
 	http://property.dev/stylesheets/rustic.css?1223918682
 	http://property.dev/stylesheets/rustic.css?1224121058
 	http://property.dev/stylesheets/rustic.css?1224213642
+	http://banjo.selfip.com:3000/stylesheets/rustic.css?1224221941
+	http://banjo.selfip.com:3000/stylesheets/lightbox.css?1211261924
 */
 
 body {
@@ -149,6 +151,7 @@ h3.property_header {
   margin-bottom: 42px;
   position: relative;
   clear: right;
+  margin-top: 9px;
 }
 
 #login-box {
@@ -234,6 +237,7 @@ h3.property_header {
 #property_primary {
   background-color: #bebea9;
   border-bottom: 5px solid #86867e;
+  height: 245px;
 }
 .property_image {
   list-style-type: none;

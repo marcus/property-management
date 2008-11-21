@@ -8,3 +8,5 @@ public/companies/*
 public/attachments/*
 public/photos/*
 config/deploy.rb
+public/javascripts/all.js
+public/stylesheets/all.css

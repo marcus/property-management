@@ -1,9 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :properties
+  map.resources :states
+
+  map.resources :states
+
   map.resources :addresses
-  map.resources :seller
+
+  map.resources :sellers
+
   map.resources :users
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   
   # Sample of regular route:

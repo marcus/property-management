@@ -74,4 +74,9 @@
   </div>
   <br style="clear:both;" />
 <% end -%>
-  
+
+<% if !@map.blank? %>
+  <%= GMap.header %>
+  <%= @map.to_html %>
+  <%= @map.div(:width => 600, :height => 400) %>
+<% end %>

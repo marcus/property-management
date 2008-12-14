@@ -13,13 +13,14 @@ class PropertiesController < ApplicationController
 
     if !@property.location.blank?
       @map = GMap.new("map_div")
-
+      @map.control_init(:large_map => true,:map_type => true)
+      
       results = Geocoding::get(@property.location)
-      if results.status == Geocoding::GEO_SUCCESS
-        coord = results[0].latlon
-        @map.overlay_init(GMarker.new(coord,:info_window => @property.location))
+       if results.status == Geocoding::GEO_SUCCESS
+         coord = results[0].latlon
+         @map.center_zoom_init(results[0].latlon, 12)
+         @map.overlay_init(GMarker.new(results[0].latlon,:info_window => @property.location))
       end
-
     end
 
     # Events for list

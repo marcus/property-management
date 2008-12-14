@@ -75,8 +75,14 @@
   <br style="clear:both;" />
 <% end -%>
 
-<% if !@map.blank? %>
-  <%= GMap.header %>
-  <%= @map.to_html %>
-  <%= @map.div(:width => 600, :height => 400) %>
+<% if current_user.allowed_to? :view_location, @property %>
+  <div id="property_location" class="bordered_section">
+    <h3 class="property_header">Location</h3>
+    <p><%=@property.location %></p>
+    
+    <% if !@map.blank? %>
+      <%= @map.to_html %>
+      <%= @map.div(:width => 600, :height => 400) %>
+    <% end %>
+  </div>
 <% end %>

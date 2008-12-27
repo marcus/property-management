@@ -71,6 +71,13 @@
     <% else %>
       <p>There are no attachments for this property.</p>
     <% end %>
+    
+    <% if current_user.allowed_to? :manage_attachments, @property %>
+      <p><%= image_tag '/images/add-16.gif' %>
+        <%= link_to 'New attachment', new_admin_property_attachment_path(@property) %>
+      </p>
+    <% end %>
+    
   </div>
   <br style="clear:both;" />
 <% end -%>

@@ -1,1 +1,4 @@
 *.log
+*.gem
+.DS_Store
+/pkg

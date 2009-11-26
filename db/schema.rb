@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(:version => 20081214005002) do
     t.string   "attached_file_size"
     t.string   "name"
     t.text     "description"
-    t.integer  "property_id",           :limit => 8
+    t.integer  "property_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position",              :limit => 8
+    t.integer  "position"
   end
 
   create_table "companies", :force => true do |t|
@@ -29,14 +29,14 @@ ActiveRecord::Schema.define(:version => 20081214005002) do
     t.string  "email"
     t.string  "logo_file_name"
     t.string  "logo_content_type"
-    t.integer "logo_file_size",    :limit => 8
+    t.integer "logo_file_size"
     t.boolean "active"
   end
 
   create_table "events", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "property_id", :limit => 8
+    t.integer  "property_id"
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.string   "event_type"
@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(:version => 20081214005002) do
   end
 
   create_table "memberships", :force => true do |t|
-    t.integer "user_id",      :limit => 8
-    t.integer "context_id",   :limit => 8
-    t.integer "role_id",      :limit => 8
+    t.integer "user_id"
+    t.integer "context_id"
+    t.integer "role_id"
     t.string  "context_type"
   end
 
@@ -62,13 +62,13 @@ ActiveRecord::Schema.define(:version => 20081214005002) do
   end
 
   create_table "properties", :force => true do |t|
-    t.integer  "company_id",  :limit => 8
     t.string   "name"
     t.text     "description"
     t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",                   :default => true
+    t.boolean  "active",      :default => true
+    t.integer  "company_id"
   end
 
   create_table "property_photos", :force => true do |t|
